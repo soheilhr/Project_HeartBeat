@@ -1,6 +1,6 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:background="@color/beautiful_blue" tools:context=".Mainpage">
+    android:layout_height="match_parent" android:background="@color/white" tools:context=".Mainpage">
 
     <!-- The primary full-screen view. This can be replaced with whatever view
          is needed to present your content, e.g. VideoView, SurfaceView,
@@ -18,38 +18,39 @@
         <LinearLayout android:id="@+id/fullscreen_content_controls" style="?metaButtonBarStyle"
             android:layout_width="match_parent" android:layout_height="wrap_content"
             android:layout_gravity="bottom|center_horizontal"
-            android:background="@color/black_overlay" android:orientation="horizontal"
+            android:background="@color/white" android:orientation="horizontal"
             tools:ignore="UselessParent">
 
         </LinearLayout>
 
         <ImageButton
-            android:layout_width="122dp"
-            android:layout_height="150dp"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
             android:id="@+id/learnbutton"
             android:layout_gravity="center|bottom|left"
-            android:src="@drawable/learn"
+            android:src="@drawable/learnicon"
             android:scaleType="fitCenter"
-            android:background="@color/beautiful_blue" />
+            android:background="@color/white" />
 
         <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="158dp"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
             android:id="@+id/practiceButton"
             android:layout_gravity="center|bottom"
-            android:src="@drawable/practice"
+            android:src="@drawable/practiceicon"
             android:scaleType="fitCenter"
-            android:background="@color/beautiful_blue" />
+            android:background="@color/white" />
 
         <ImageButton
-            android:layout_width="114dp"
-            android:layout_height="141dp"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
             android:id="@+id/beatbutton"
             android:layout_gravity="right|bottom"
             android:baselineAlignBottom="false"
-            android:src="@drawable/challenge"
+            android:src="@drawable/challengeicon"
             android:scaleType="fitCenter"
-            android:background="@color/beautiful_blue" />
+            android:background="@color/white" />
+        
 
         <SurfaceView
             android:layout_width="161dp"
@@ -69,7 +70,7 @@
             android:adjustViewBounds="false"
             android:cropToPadding="false"
             android:tintMode="src_over"
-            android:background="@color/beautiful_blue"
+            android:background="@color/white"
             android:focusableInTouchMode="false" />
 
         <ImageButton
@@ -78,7 +79,7 @@
             android:id="@+id/settingbutton"
             android:layout_gravity="left|top"
             android:src="@drawable/setting"
-            android:background="@color/beautiful_blue"
+            android:background="@color/white"
             android:scaleType="fitCenter" />
 
     </FrameLayout>
