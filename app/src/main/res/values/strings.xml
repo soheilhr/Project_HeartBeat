@@ -3,4 +3,8 @@
 
     <string name="dummy_button"> </string>
     <string name="dummy_content"> </string>
+
+    <string name="title_activity_practice">Practice</string>
+
+    <string name="title_activity_soundmatch">soundmatch</string>
 </resources>
