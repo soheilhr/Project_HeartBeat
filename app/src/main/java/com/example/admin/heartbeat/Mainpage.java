@@ -4,11 +4,13 @@ import com.example.admin.heartbeat.util.SystemUiHider;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.MotionEvent;
 import android.view.View;
+import android.content.Intent;
 
 
 /**
@@ -157,4 +159,11 @@ public class Mainpage extends Activity {
         mHideHandler.removeCallbacks(mHideRunnable);
         mHideHandler.postDelayed(mHideRunnable, delayMillis);
     }
+
+    public void practicefunction(View view) {
+        // Do something in response to button
+        Intent intent = new Intent(this, soundmatch.class);
+        startActivity(intent);
+    }
 }
+

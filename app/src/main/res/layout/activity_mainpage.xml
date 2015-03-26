@@ -39,6 +39,7 @@
             android:layout_gravity="center|bottom"
             android:src="@drawable/practiceicon"
             android:scaleType="fitCenter"
+            android:onClick="practicefunction"
             android:background="@color/white" />
 
         <ImageButton

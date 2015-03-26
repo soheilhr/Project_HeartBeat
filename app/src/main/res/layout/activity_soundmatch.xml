@@ -1,9 +1,12 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="wrap_content"
     android:layout_height="match_parent" android:background="@color/white"
     tools:context="com.example.admin.heartbeat.soundmatch">
 
-
+    <TextView android:id="@+id/fullscreen_content" android:layout_width="match_parent"
+        android:layout_height="match_parent" android:keepScreenOn="true" android:textColor="#33b5e5"
+        android:textStyle="bold" android:textSize="50sp" android:gravity="center"
+        android:text="@string/dummy_content" />
     <!-- This FrameLayout insets its children based on system windows using
          android:fitsSystemWindows. -->
     <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent"
@@ -75,7 +78,8 @@
                         android:text="Time"
                         android:id="@+id/textView5"
                         android:layout_weight="0.1"
-                        android:gravity="center_horizontal" />
+                        android:gravity="center_horizontal"
+                        android:textColor="@color/black" />
 
                     <Chronometer
                         android:layout_width="fill_parent"
@@ -85,7 +89,8 @@
                         android:typeface="normal"
                         android:textSize="40dp"
                         android:gravity="center_horizontal"
-                        android:layout_weight="0.9" />
+                        android:layout_weight="0.9"
+                        android:textColor="@color/black" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -125,7 +130,7 @@
             android:orientation="vertical"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="0.6">
+            android:layout_weight="0.8">
 
             <ProgressBar
                 style="?android:attr/progressBarStyleHorizontal"
@@ -133,7 +138,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/progressBar"
                 android:layout_weight="0.3"
-                android:background="@drawable/beat1" />
+                android:background="@drawable/apex" />
 
             <ProgressBar
                 style="?android:attr/progressBarStyleHorizontal"
@@ -141,7 +146,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/progressBar2"
                 android:layout_weight="0.3"
-                android:background="@drawable/beat2" />
+                android:background="@drawable/bell" />
 
         </LinearLayout>
 
@@ -150,7 +155,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_weight="0.2">
+            android:layout_weight="0.1">
 
             <TextView
                 android:layout_width="fill_parent"
@@ -160,16 +165,18 @@
                 android:id="@+id/textView7"
                 android:layout_weight="0.1"
                 android:layout_gravity="left"
-                android:gravity="left" />
+                android:gravity="left"
+                android:textColor="@color/black" />
 
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="That condition"
+                android:text="Aortic Stenosis"
                 android:id="@+id/textView6"
                 android:layout_weight="0.90"
                 android:textSize="40dp"
-            android:gravity="center_vertical|center_horizontal" />
+            android:gravity="center_vertical|center_horizontal"
+                android:textColor="#000000" />
         </LinearLayout>
 
         <LinearLayout
@@ -177,7 +184,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:weightSum="1"
-            android:layout_weight="0.2"
+            android:layout_weight="0.05"
             android:gravity="center_vertical|center_horizontal"
             android:showDividers="middle">
 
@@ -188,7 +195,7 @@
                 android:layout_weight="0.5"
                 android:src="@drawable/practiceicon"
                 android:scaleType="centerCrop"
-                android:adjustViewBounds="false"
+                android:adjustViewBounds="true"
                 android:background="@color/white" />
 
             <ImageButton
@@ -199,7 +206,7 @@
                 android:src="@drawable/practiceicon2"
                 android:scaleType="centerCrop"
                 android:background="@color/white"
-                android:adjustViewBounds="false" />
+                android:adjustViewBounds="true" />
         </LinearLayout>
 
 
