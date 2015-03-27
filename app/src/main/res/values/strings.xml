@@ -7,4 +7,8 @@
     <string name="title_activity_practice">Practice</string>
 
     <string name="title_activity_soundmatch">soundmatch</string>
+    <string name="title_activity_game1">Game1</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
 </resources>

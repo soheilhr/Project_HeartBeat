@@ -25,10 +25,8 @@
             android:theme="@style/FullscreenTheme" >
         </activity>
         <activity
-            android:name=".soundmatch"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:label="@string/title_activity_soundmatch"
-            android:theme="@style/FullscreenTheme" >
+            android:name=".Game1"
+            android:label="@string/title_activity_game1" >
         </activity>
     </application>
 

@@ -1,25 +1,14 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="wrap_content"
-    android:layout_height="match_parent" android:background="@color/white"
-    tools:context="com.example.admin.heartbeat.soundmatch">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="com.example.admin.heartbeat.Game1">
 
-    <TextView android:id="@+id/fullscreen_content" android:layout_width="match_parent"
-        android:layout_height="match_parent" android:keepScreenOn="true" android:textColor="#33b5e5"
-        android:textStyle="bold" android:textSize="50sp" android:gravity="center"
-        android:text="@string/dummy_content" />
-    <!-- This FrameLayout insets its children based on system windows using
-         android:fitsSystemWindows. -->
-    <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent"
+    <LinearLayout  android:layout_width="match_parent" android:layout_height="match_parent"
         android:fitsSystemWindows="true"
         android:orientation="vertical">
-
-        <LinearLayout android:id="@+id/fullscreen_content_controls" style="?metaButtonBarStyle"
-            android:layout_width="match_parent" android:layout_height="wrap_content"
-            android:layout_gravity="bottom|center_horizontal"
-            android:background="@color/black_overlay" android:orientation="horizontal"
-            tools:ignore="UselessParent">
-
-        </LinearLayout>
 
         <LinearLayout
             android:orientation="vertical"
@@ -48,7 +37,7 @@
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:text="Score"
-                        android:textColor="@color/_blue"
+                        android:textColor="#0000FF"
                         android:id="@+id/textView8"
                         android:layout_weight="0.1"
                         android:gravity="center_horizontal" />
@@ -58,8 +47,8 @@
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceLarge"
                         android:text="000"
-                        android:id="@+id/textView"
-                        android:textColor="@color/_blue"
+                        android:id="@+id/blueScore"
+                        android:textColor="#0000FF"
                         android:textSize="40dp"
                         android:gravity="center_vertical|center_horizontal"
                         android:layout_weight="0.9" />
@@ -81,16 +70,16 @@
                         android:gravity="center_horizontal"
                         android:textColor="@color/black" />
 
-                    <Chronometer
-                        android:layout_width="fill_parent"
+                    <TextView
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/chronometer"
-                        android:numeric="integer"
-                        android:typeface="normal"
-                        android:textSize="40dp"
-                        android:gravity="center_horizontal"
-                        android:layout_weight="0.9"
-                        android:textColor="@color/black" />
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="00"
+                        android:id="@+id/textTime"
+                        android:layout_weight="0.1"
+                        android:textColor="@color/black"
+                        android:textSize="40dp" />
+
                 </LinearLayout>
 
                 <LinearLayout
@@ -114,7 +103,7 @@
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:text="000"
-                        android:id="@+id/textView2"
+                        android:id="@+id/redScore"
                         android:textColor="@color/red"
                         android:textSize="40dp"
                         android:layout_weight="0.9"
@@ -136,7 +125,7 @@
                 style="?android:attr/progressBarStyleHorizontal"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/progressBar"
+                android:id="@+id/progressBarBlue"
                 android:layout_weight="0.3"
                 android:background="@drawable/apex" />
 
@@ -144,7 +133,7 @@
                 style="?android:attr/progressBarStyleHorizontal"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/progressBar2"
+                android:id="@+id/progressBarRed"
                 android:layout_weight="0.3"
                 android:background="@drawable/bell" />
 
@@ -172,10 +161,10 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:text="Aortic Stenosis"
-                android:id="@+id/textView6"
+                android:id="@+id/textCondition"
                 android:layout_weight="0.90"
                 android:textSize="40dp"
-            android:gravity="center_vertical|center_horizontal"
+                android:gravity="center_vertical|center_horizontal"
                 android:textColor="#000000" />
         </LinearLayout>
 
@@ -191,7 +180,7 @@
             <ImageButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/imageButton"
+                android:id="@+id/redButton"
                 android:layout_weight="0.5"
                 android:src="@drawable/practiceicon"
                 android:scaleType="centerCrop"
@@ -201,7 +190,7 @@
             <ImageButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/imageButton2"
+                android:id="@+id/blueButton"
                 android:layout_weight="0.5"
                 android:src="@drawable/practiceicon2"
                 android:scaleType="centerCrop"
@@ -209,7 +198,6 @@
                 android:adjustViewBounds="true" />
         </LinearLayout>
 
-
     </LinearLayout>
 
-</FrameLayout>
+</RelativeLayout>
