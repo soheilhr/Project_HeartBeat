@@ -43,8 +43,8 @@
                     android:background="@color/white">
 
                     <ImageButton
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
+                        android:layout_width="@dimen/icon_size"
+                        android:layout_height="@dimen/icon_size"
                         android:id="@+id/learnbutton"
                         android:src="@drawable/learnicon"
                         android:scaleType="fitCenter"

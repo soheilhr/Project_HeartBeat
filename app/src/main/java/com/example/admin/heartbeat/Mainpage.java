@@ -193,7 +193,7 @@ public class Mainpage extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void onLearnButtonClick(View view){
+    public void onPracticeButtonClick(View view){
         view.startAnimation(buttonAnimation());
         // Do something in response to button
         //Intent intent = new Intent(Mainpage.this, LearnActivity.class);
@@ -209,11 +209,11 @@ public class Mainpage extends Activity {
         view.startAnimation(buttonAnimation());
     }
 
-    public void onPracticeButtonClick(View view){
+    public void onLearnButtonClick(View view){
         // Do something in response to button
-        //Intent intent = new Intent(this, MainActivity2Activity_learn.class);
+        Intent intent = new Intent(this, LearnHomeActivity.class);
         // intent.putExtra(EXTRA_MESSAGE, message);
-        //startActivity(intent);
+        startActivity(intent);
         view.startAnimation(buttonAnimation());
     }
 

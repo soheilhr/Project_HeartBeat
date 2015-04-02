@@ -11,4 +11,14 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_practice">PracticeActivity</string>
+    <string name="title_activity_learn_home">LearnHomeActivity</string>
+    <string name="title_activity_learn_activity_basics">LearnActivityBasics</string>
+    <string name="title_activity_learn_activity_murmurs">LearnActivityMurmurs</string>
+    <string name="title_activity_learn_activity_cardiac_cycle">LearnActivityCardiacCycle</string>
+    <string name="title_activity_learn_activity_s1">LearnActivityS1</string>
+    <string name="title_activity_learn_activity_s2">LearnActivityS2</string>
+    <string name="title_activity_learn_activity_s3">LearnActivityS3</string>
+    <string name="title_activity_learn_activity_s4">LearnActivityS4</string>
+
+
 </resources>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <string-array name="string_array_learn_basics">
+        <item>Cardiac Cycle</item>
+        <item>Heart Sound: S1</item>
+        <item>Heart Sound: S2</item>
+        <item>Heart Sound: S3</item>
+        <item>Heart Sound: S4</item>
+    </string-array>
+
+    <string-array name="string_array_learn_murmurs">
+        <item>Aortic Stenosis (mild)</item>
+        <item>Mitral Regurgitation</item>
+        <item>Mitral Valve Prolapse</item>
+        <item>Hypertropic Cardiomyopathy</item>
+        <item>Aortic Regurgitation (mild)</item>
+        <item>Pulmonic Regurgitation</item>
+        <item>Mitral Stenosis</item>
+        <item>Tricuspid Stenosis</item>
+    </string-array>
+
+</resources>

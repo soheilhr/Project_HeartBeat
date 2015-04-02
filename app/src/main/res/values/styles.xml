@@ -4,6 +4,7 @@
     <style name="AppTheme" parent="@style/Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
         <item name="android:actionBarStyle">@style/AppTheme.ActionBarStyle</item>
+        <item name="android:background">@color/white</item>
         <!-- Support library compatibility -->
         <item name="actionBarStyle">@style/AppTheme.ActionBarStyle</item>
     </style>

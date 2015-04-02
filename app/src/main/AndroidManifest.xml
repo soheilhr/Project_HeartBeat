@@ -22,6 +22,41 @@
             android:name=".SettingsActivity"
             android:label="@string/title_activity_settings" >
         </activity>
+        <activity
+            android:name=".LearnHomeActivity"
+            android:theme="@style/AppTheme" >
+            android:label="@string/title_activity_learn_home" >
+        </activity>
+        <activity
+            android:name=".LearnActivityBasics"
+            android:theme="@style/AppTheme" >
+            android:label="@string/title_activity_learn_activity_basics" >
+        </activity>
+        <activity
+            android:name=".LearnActivityMurmurs"
+            android:theme="@style/AppTheme" >
+            android:label="@string/title_activity_learn_activity_murmurs" >
+        </activity>
+        <activity
+            android:name=".LearnActivityCardiacCycle"
+            android:label="@string/title_activity_learn_activity_cardiac_cycle" >
+        </activity>
+        <activity
+            android:name=".LearnActivityS1"
+            android:label="@string/title_activity_learn_activity_s1" >
+        </activity>
+        <activity
+            android:name=".LearnActivityS2"
+            android:label="@string/title_activity_learn_activity_s2" >
+        </activity>
+        <activity
+            android:name=".LearnActivityS3"
+            android:label="@string/title_activity_learn_activity_s3" >
+        </activity>
+        <activity
+            android:name=".LearnActivityS4"
+            android:label="@string/title_activity_learn_activity_s4" >
+        </activity>
     </application>
 
 </manifest>
