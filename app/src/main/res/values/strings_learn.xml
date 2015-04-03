@@ -21,4 +21,25 @@
         <item>Tricuspid Stenosis</item>
     </string-array>
 
+    <!-- 1. Cardiac Cycle -->
+    <string name="cardiac_cycle1">
+        Cardiac Cycle\n\n
+        The cardiac cycle is the rhythmic muscular contractions of the heart through systole and diastole of both the atria nad ventricles.\n
+        Each phase of the cycle can be represented by waves on an electrocardiogram and consists of seven distinct phases:\n\n
+        1. Atrial contraction\n
+        2. Isovolumetric contraction\n
+        3. Rapid ejection\n
+        4. Reduced ejection\n
+        5. Isovolumetric relaxation\n
+        6. Rapid filling\n
+        7. Reduced filling\n\n
+
+        The diagram below shows the cardiac cycle.
+
+
+
+    </string>
+    <string name="cardiac_cycle2">
+        [The Cardiac Cycle - adapted from Williams and Wilkins, Cardiovascular Physiology Concepts 2005]
+    </string>
 </resources>
