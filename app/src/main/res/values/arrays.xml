@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+        <array name="hsound">
+            <item>@raw/hs1</item>
+            <item>@raw/hs2</item>
+            <item>@raw/hs3</item>
+            <item>@raw/hs4</item>
+            <item>@raw/hs5</item>
+            <item>@raw/hs6</item>
+            <item>@raw/hs7</item>
+            <item>@raw/hs8</item>
+        </array>
+    <array name="rwave">
+        <item>@drawable/hsred1</item>
+        <item>@drawable/hsred2</item>
+        <item>@drawable/hsred3</item>
+        <item>@drawable/hsred4</item>
+        <item>@drawable/hsred5</item>
+        <item>@drawable/hsred6</item>
+        <item>@drawable/hsred7</item>
+        <item>@drawable/hsred8</item>
+     </array>
+    <array name="bwave">
+        <item>@drawable/hsblue1</item>
+        <item>@drawable/hsblue2</item>
+        <item>@drawable/hsblue3</item>
+        <item>@drawable/hsblue4</item>
+        <item>@drawable/hsblue5</item>
+        <item>@drawable/hsblue6</item>
+        <item>@drawable/hsblue7</item>
+        <item>@drawable/hsblue8</item>
+    </array>
+    <array name="cond">
+    <item><string>Aortic Stenosis</string></item>
+    <item><string>Mitral Regurgitation</string></item>
+    <item><string>Mitral Valve Prolapse</string></item>
+    <item><string>Hypertrophic Cardiomyopathy</string></item>
+    <item><string>Aortic Regurgitation</string></item>
+    <item><string>Pulmonic Regurgitation</string></item>
+    <item><string>Mitral Stenosis</string></item>
+    <item><string>Tricuspid Stenosis</string></item>
+</array>
+
+    <array name="meas">
+        <item>1</item>
+        <item>4</item>
+        <item>4</item>
+        <item>4</item>
+        <item>1</item>
+        <item>2</item>
+        <item>4</item>
+        <item>3</item>
+    </array>
+
+</resources>

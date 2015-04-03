@@ -4,6 +4,7 @@ import com.example.admin.heartbeat.util.SystemUiHider;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.app.Application;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -12,13 +13,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.content.Intent;
 
-
-/**
- * An example full-screen activity that shows and hides the system UI (i.e.
- * status bar and navigation/system bar) with user interaction.
- *
- * @see SystemUiHider
- */
 public class Mainpage extends Activity {
     /**
      * Whether or not the system UI should be auto-hidden after
@@ -47,7 +41,7 @@ public class Mainpage extends Activity {
      * The instance of the {@link SystemUiHider} for this activity.
      */
     private SystemUiHider mSystemUiHider;
-
+    double[] measures= new double[]{1, 0.5, 0.2, 0.3, 0.4, 0.5, 0.6};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,6 +50,8 @@ public class Mainpage extends Activity {
 
         final View controlsView = findViewById(R.id.fullscreen_content_controls);
         final View contentView = findViewById(R.id.fullscreen_content);
+
+
 
         // Set up an instance of SystemUiHider to control the system UI for
         // this activity.
@@ -163,6 +159,8 @@ public class Mainpage extends Activity {
     public void practicefunction(View view) {
         // Do something in response to button
         Intent intent = new Intent(this, Game1.class);
+        measures[1]=0.99;
+        ((MyApplication) this.getApplication()).setMetrics(measures);
         startActivity(intent);
     }
 }

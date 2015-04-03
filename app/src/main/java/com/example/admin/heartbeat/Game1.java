@@ -1,5 +1,6 @@
 package com.example.admin.heartbeat;
 
+import android.content.res.TypedArray;
 import android.media.AudioManager;
 import android.media.*;
 import android.os.SystemClock;
@@ -16,17 +17,38 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import java.io.IOException;
+import java.util.Random;
+import java.util.logging.Handler;
+import java.util.logging.LogRecord;
+
 
 
 public class Game1 extends ActionBarActivity implements View.OnClickListener {
-    private TextView scoreBlue,scoreRed,condition,remTime;
+    private TextView scoreBlue,scoreRed,condition,remTime,redtext;
     private ProgressBar bluebar,redbar;
     private int score1,score2,correctbutton,level,cnt,cnt1,cnt2;
     private MediaPlayer mediaPlayer1,mediaPlayer2;
-    private class myCase{
-        int correctanswer=1;
+    private double[] measures,tmpmeasures;
+    private int[] currentcondition=new int[]{0,0,0};
+    private Thread t1 = new Thread(new Runnable() {
+        public void run() {
+            /////
+            while(true){bluebar.setProgress((mediaPlayer1.getCurrentPosition()/30));}
+        }
+    });
+    private Thread t2 = new Thread(new Runnable() {
+        public void run() {
+            /////
+            while(true){redbar.setProgress((mediaPlayer2.getCurrentPosition()/30));}
+        }
+    });
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        mediaPlayer1.stop();
+        mediaPlayer2.stop();
     }
-    private myCase case1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,36 +56,71 @@ public class Game1 extends ActionBarActivity implements View.OnClickListener {
         setContentView(R.layout.activity_game1);
         scoreBlue = (TextView) findViewById(R.id.blueScore);
         scoreRed = (TextView) findViewById(R.id.redScore);
+        redtext=(TextView) findViewById(R.id.textView9);
         remTime = (TextView) findViewById(R.id.textTime);
         condition = (TextView) findViewById(R.id.textCondition);
         bluebar = (ProgressBar) findViewById(R.id.progressBarBlue);
         redbar = (ProgressBar) findViewById(R.id.progressBarRed);
         ((ImageButton) findViewById(R.id.redButton)).setOnClickListener(this);
         ((ImageButton) findViewById(R.id.blueButton)).setOnClickListener(this);
+        tmpmeasures=new double[]{0,0,0,0,0,0};
         getcondition(1);
         score1=0;
+        score2=0;
         cnt1=0;
         cnt2=0;
         level=1;
-        new CountDownTimer(30000, 1000) {
+        scoreRed.setVisibility(View.INVISIBLE);
+        redtext.setVisibility(View.INVISIBLE);
+        new CountDownTimer(100000, 1000) {
 
             public void onTick(long millisUntilFinished) {
-                cnt1=(cnt1+1)%3;
+                cnt1=(cnt1+1)%4;
                 remTime.setText(""+millisUntilFinished / 1000);
                 scoreRed.setText("222");
                 if(cnt1==0) {
+                    if(mediaPlayer1.isPlaying())
+                    {
+                        mediaPlayer1.stop();
+                    }
+                    if(mediaPlayer2.isPlaying())
+                    {
+                        mediaPlayer2.stop();
+                    }
+
+
                     if (cnt2 == 0) mediaPlayer1.start();
                     else mediaPlayer2.start();
                     cnt2 = (cnt2 + 1) % 2;
                 }
+                scoreRed.setText(""+score2);
             }
 
             public void onFinish() {
-                scoreRed.setText("666");
+                // set
+                measures = ((MyApplication) getApplication()).getMetrics();
+                calculatemeasures();
+                ((MyApplication) getApplication()).setMetrics(measures);
+                finish();
             }
         }.start();
+                t1.start();
+                t2.start();
 
     }
+
+
+    /**
+     * Update timer on seekbar
+     * */
+
+
+    /**
+     * Background Runnable thread
+     * */
+
+
+
 
 
     @Override
@@ -87,35 +144,99 @@ public class Game1 extends ActionBarActivity implements View.OnClickListener {
 
         return super.onOptionsItemSelected(item);
     }
+
     public void getcondition(int level){
-        mediaPlayer1=MediaPlayer.create(this, R.raw.hs1);
-        mediaPlayer2=MediaPlayer.create(this, R.raw.hs2);
+        Random r = new Random();
+        int i1 = (r.nextInt(9-1));
+        int i2=(r.nextInt(9-1));
+        while(i2==i1)i2=(r.nextInt(9-1));
+
+        TypedArray ids = getResources().obtainTypedArray(R.array.hsound);
+        int id1,id2;
+        id1=ids.getResourceId(i1,-1);
+        id2=ids.getResourceId(i2,-1);
+        currentcondition[1]=i1;
+        currentcondition[2]=i2;
+        mediaPlayer1=MediaPlayer.create(this, id1);
+        mediaPlayer2=MediaPlayer.create(this, id2);
+
+        TypedArray ids2 = getResources().obtainTypedArray(R.array.bwave);
+        TypedArray ids3 = getResources().obtainTypedArray(R.array.rwave);
+        bluebar.setBackgroundResource(ids2.getResourceId(i1,-1));
+        redbar.setBackgroundResource(ids3.getResourceId(i2,-1));
+        correctbutton=(r.nextInt(3-1));
+        TypedArray ids4 = getResources().obtainTypedArray(R.array.cond);
+       /// idtmp=ids3.getString(i1);//getResourceId(i1,-1);
+        if(correctbutton==1)condition.setText(ids4.getString(i1));
+        else condition.setText(ids4.getString(i2));
+
+
+
         //condition =
         //redbar =
         //bluebar =
         //correctbutton =
     }
+    void gotcorrect(int choice){
+        score1 = score1+level*100;
+        scoreBlue.setText(String.format("%03d",score1));
+        TypedArray tmpids = getResources().obtainTypedArray(R.array.meas);
+        tmpmeasures[tmpids.getInt(currentcondition[choice],-1)]=(tmpmeasures[tmpids.getInt(currentcondition[choice],-1)]+1);
+        tmpmeasures[5]=tmpmeasures[5]+1;
+    }
+
+    void gotfalse(int choice){
+        TypedArray tmpids = getResources().obtainTypedArray(R.array.meas);
+        tmpmeasures[tmpids.getInt(currentcondition[choice],-1)]=(tmpmeasures[tmpids.getInt(currentcondition[choice],-1)]-1);
+        tmpmeasures[5]=tmpmeasures[5]+1;
+    }
+    void calculatemeasures()
+    {
+        int tmpsign,tmpsum=0;
+        double tmpnum;
+        tmpnum=tmpmeasures[5];
+        if(tmpnum==0)return;
+        for(int i=1;i<5;i++)
+        {
+            if((tmpmeasures[i]/tmpnum)<measures[i])tmpsign=-1;
+            else tmpsign=1;
+            measures[i]=measures[i]+0.1*tmpsign;
+            tmpsum=tmpsum+(int)tmpmeasures[i];
+        }
+        if((tmpsum/tmpnum)<measures[5])tmpsign=-1;
+        else tmpsign=1;
+        measures[5]=measures[5]+0.1*tmpsign;
+        if((tmpnum/20)<measures[6])tmpsign=-1;
+        else tmpsign=1;
+        measures[6]=measures[6]+0.1*tmpsign;
+    }
+
     @Override
     public void onClick(View v) {
         int selectedButton=0;
 
         switch(v.getId()) {
             case R.id.redButton:
-                selectedButton=0;
+                selectedButton=2;
 
 
                 break;
             case R.id.blueButton:
                 selectedButton=1;
+
                 ///chronometer.stop();
                 break;
         }
         if(selectedButton==correctbutton)
         {
-            score1=score1+level*100;
-            level++;
+            gotcorrect(correctbutton);
+        }else {
+            gotfalse(correctbutton);
         }
-        else getcondition(level);
-        scoreBlue.setText(String.format("%03d",score1));
+        ///else ;
+        getcondition(level);
+        //int i1 = (r.nextInt(8-0));
+        //score1=i1;
+
     }
 }
