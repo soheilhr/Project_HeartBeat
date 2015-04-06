@@ -5,13 +5,14 @@
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:theme="@style/HeartBeatTheme"
-        android:label="@string/app_name">
+        android:label="@string/app_name"
+        android:theme="@style/HeartBeatTheme" >
         <activity
             android:name=".Mainpage"
-            android:label="@string/app_name">
+            android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -50,6 +51,22 @@
         <activity
             android:name=".LearnActivityS4"
             android:label="@string/title_activity_learn_activity_s4" >
+        </activity>
+        <activity
+            android:name=".LearnActivityAorticStenosis"
+            android:label="@string/title_activity_learn_activity_aortic_stenosis" >
+        </activity>
+        <activity
+            android:name=".LearnActivityMitralStenosis"
+            android:label="@string/title_activity_learn_activity_mitral_stenosis" >
+        </activity>
+        <activity
+            android:name=".LearnActivityAorticRegurgitation"
+            android:label="@string/title_activity_learn_activity_aortic_regurgitation" >
+        </activity>
+        <activity
+            android:name=".LearnActivityMitralRegurgitation"
+            android:label="@string/title_activity_learn_activity_mitral_regurgitation" >
         </activity>
     </application>
 

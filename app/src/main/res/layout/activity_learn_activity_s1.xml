@@ -6,7 +6,23 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="com.example.admin.heartbeat.LearnActivityS1">
 
-    <TextView android:text="S1" android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:id="@+id/scrollView8"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" >
 
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/s1"
+                android:id="@+id/textView10" />
+        </LinearLayout>
+    </ScrollView>
 </RelativeLayout>

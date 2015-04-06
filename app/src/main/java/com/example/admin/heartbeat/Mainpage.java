@@ -211,7 +211,7 @@ public class Mainpage extends Activity {
 
     public void onLearnButtonClick(View view){
         // Do something in response to button
-        Intent intent = new Intent(this, LearnHomeActivity.class);
+        Intent intent = new Intent(this, LearnActivityBasics.class);
         // intent.putExtra(EXTRA_MESSAGE, message);
         startActivity(intent);
         view.startAnimation(buttonAnimation());

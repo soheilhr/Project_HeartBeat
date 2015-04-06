@@ -95,6 +95,22 @@ public class LearnActivityBasics extends ActionBarActivity {
             Intent intent = new Intent(this, LearnActivityS4.class);
             startActivity(intent);
         }
+        else if (id == 5) {
+            Intent intent = new Intent(this, LearnActivityAorticStenosis.class);
+            startActivity(intent);
+        }
+        else if (id == 6) {
+            Intent intent = new Intent(this, LearnActivityMitralStenosis.class);
+            startActivity(intent);
+        }
+        else if (id == 7) {
+            Intent intent = new Intent(this, LearnActivityAorticRegurgitation.class);
+            startActivity(intent);
+        }
+        else if (id == 8) {
+            Intent intent = new Intent(this, LearnActivityMitralRegurgitation.class);
+            startActivity(intent);
+        }
 
         view.startAnimation(buttonAnimation());
 

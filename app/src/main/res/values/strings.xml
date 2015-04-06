@@ -19,6 +19,16 @@
     <string name="title_activity_learn_activity_s2">LearnActivityS2</string>
     <string name="title_activity_learn_activity_s3">LearnActivityS3</string>
     <string name="title_activity_learn_activity_s4">LearnActivityS4</string>
+    <string name="title_activity_learn_activity_aortic_stenosis">LearnActivityAorticStenosis
+    </string>
+    <string name="title_activity_learn_activity_mitral_stenosis">LearnActivityMitralStenosis
+    </string>
+    <string name="title_activity_learn_activity_aortic_regurgitation">
+        LearnActivityAorticRegurgitation
+    </string>
+    <string name="title_activity_learn_activity_mitral_regurgitation">
+        LearnActivityMitralRegurgitation
+    </string>
 
 
 </resources>

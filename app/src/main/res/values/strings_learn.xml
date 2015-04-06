@@ -8,6 +8,10 @@
         <item>Heart Sound: S2</item>
         <item>Heart Sound: S3</item>
         <item>Heart Sound: S4</item>
+        <item>Aortic Stenosis</item>
+        <item>Mitral Stenosis</item>
+        <item>Aortic Regurgitation</item>
+        <item>Mitral Regurgitation</item>
     </string-array>
 
     <string-array name="string_array_learn_murmurs">
@@ -35,11 +39,142 @@
         7. Reduced filling\n\n
 
         The diagram below shows the cardiac cycle.
-
-
-
     </string>
     <string name="cardiac_cycle2">
         [The Cardiac Cycle - adapted from Williams and Wilkins, Cardiovascular Physiology Concepts 2005]
     </string>
+
+    <string name="s1">
+        <b>The first heart sound “lub”</b>\n
+        &#8226; The closure of the mitral and tricuspid valves in early ventricular systole\n
+        &#8226; Normally heard as a single sound due to the simultaneous closure of the mitral and tricuspid valves\n
+        &#8226; Mostly hear the closure the mitral valve\n
+        &#8226; High frequency sound caused by vibrations of the valves and walls of the heart\n\n
+        <b>M1:</b>\n
+        &#8226; The sound produced by the closure of the mitral valve\n
+        &#8226; Can be heard the loudest at the mitral area at the apex\n
+        &#8226; Main component of S1\n\n
+        <b>T1:</b>\n
+        &#8226; The sound produced by the closure of the tricuspid valve\n
+        &#8226; Only heard at the left lower sternal border in the 4th intercostal space\n
+
+    </string>
+
+    <string name="s2">
+        <b>The second heart sound “dub”</b>\n
+        &#8226; Produced by the closure of the aortic and pulmonic valves\n
+        &#8226; High frequency sound\n
+        &#8226; Pulmonic closure: Best heard in the 2nd/3rd intercostals space left sternal border\n
+        &#8226; Aortic closure: Best heard in the 2nd/3rd intercostals space right sternal border\n\n
+        <b>Expiration</b>\n
+        &#8226; Aortic (A2) and pulmonic (P2) are normally fused as one sound\n\n
+        <b>Inspiration</b>\n
+        &#8226; Delays pulmonic closure and accentuates early aortic closure\n
+        &#8226; Normal or physiological splitting of S2\n
+    </string>
+
+    <string name="s3">
+        <b>The Third Heart Sound – S3 – Ventricular Gallop</b>\n
+        &#8226; Abnormal heart sound that occurs at the end of the passive filling phase\n
+        &#8226; Best be heard as a dull, low pitched noise immediately following S2\n
+        &#8226; Can be difficult to distinguish from a split S2\n
+        &#8226; If the sound heard at the tricuspid area: The right ventricle is faulty\n
+        &#8226; If the sound occurs at the mitral area: The left ventricle is faulty\n
+        &#8226; A pathological S3: Ventricular gallop\n\n
+        <b>Can be a normal heart sound</b>\n
+        &#8226; Occurs in children or young adults or even the last trimester of pregnancy\n
+
+    </string>
+
+    <string name="s4">
+        <b>The Forth Heart Sound – S4 – Atrial Gallop</b>\n
+        &#8226; Abnormal heart sound known as the pre-systolic gallop\n
+        &#8226; Occurs shortly before the next S1\n
+        &#8226; Distinguishing an S3 from an S4 can be challenging\n
+        &#8226; Can be heard in late diastole\n
+        &#8226; Caused by the vibration of the ventricular wall during atrial contraction\n
+        &#8226; Sound is produced by the atrium forcefully contracting against a stiffened ventricle\n
+        &#8226; A dull and low pitched sound\n\n
+        <b>Summation gallop</b>\n
+        &#8226; If a patient with both S3 and S4 develops tachycardia, diastole is shorted and the sounds become very close together\n
+
+    </string>
+
+
+
+    <string name="aorticstenosis1">
+        <b>Aortic Stenosis-Left Lower Sternal Border</b>\n\n
+        &#8226; The intensity and timing of the murmur correlate with severity\n
+        &#8226; As murmurs that are very harsh and peak later in systole, closer to S2, signal severe obstruction\n\n
+        <b>Etiology</b>\n
+        &#8226; Most common cause is age-related calcification of the aortic valve\n
+        &#8226; Less common causes include calcification of congenital bicuspid aortic valves and rheumatic heart disease.\n
+        &#8226; Hypertrophic cardiomyopathy and other rare congenital disorders can obstruct the left ventricular outflow tract without affecting the AV\n\n
+        <b>Presentation</b>\n
+        &#8226; Most common is fatigue and dyspnea.\n
+        &#8226; As AS worsens, patients develop syncope, angina, and heart failure\n\n
+        <b>Where to listen</b>\n
+        &#8226; RUSB with the diaphragm; listen for radiation to the carotid arteries\n
+        &#8226; Occasionally audible at LLSB and apex\n
+    </string>
+
+
+    <string name="mitralregurgitation1">
+        <b>Mitral Regurgitation – Apical Lift</b>\n
+        &#8226; Typically mitral regurgitant flow persists through all of systole.\n
+        &#8226; Mitral regurgitant reflects the driving force of the pressure difference between the left ventricle and atrium\n\n
+        <b>Etiology</b>\n
+        &#8226; Most common causes are ischemia, LV dilatation from any cause, and degenerative calcification of the MV.\n
+        &#8226; Less common causes include rheumatic heart disease, congenital malformation of valve, infective endocarditis, trauma, and mitral valve prolaspse\n\n
+        <b>Where to listen</b>\n
+        &#8226; Loudest in apex with radiation to the axilla\n
+        &#8226; Sound increases with handgrip, which increases afterload\n
+    </string>
+    <string name="aorticregurgitation1">
+        <b>Aortic Regurgitation – Left Lower Sternal Border</b>\n
+        &#8226; A widened pulse pressure (increased systolic BP and decreased diastolic BP) often accompanies AR\n
+        &#8226; The decrease in the diastolic pressure is a good indicator of severity\n\n
+        <b>Etiologies of AV disease and aortic root disease</b>\n
+        &#8226; The most common valvular cause is rheumatic heart disease, with infective endocarditis, congenital bicuspid aortic valves\n
+        &#8226; Less common causes is trauma\n
+        &#8226; Marked dilatation of the aortic root is associated with Marfan syndrome, osteogenesis imperfect, tertiary syphilis, ankylosing spondylitis, and severe uncontrolled hypertension\n
+        &#8226; Aortic root dilatation can occur with a bicuspid aortic valve even in the absence of any significant AS or AR\n\n
+        <b>Where to listen</b>\n
+        &#8226; In disease of the aortic valve, the diastolic AR murmur (DM) is best heard at the left mid-sternal border (~4th intercostal space) with the diaphragm; patient leaning forward; held expiration\n
+        &#8226; In disease of the aortic root (less common), the murmur is best heard at the RUSB\n
+        &#8226; The diastolic AR murmur (DM) is often coincident with 2 other murmurs\n
+        &#8226; In total, three murmurs are possible:\n
+        <t>1. A mid-systolic ejection murmur (SM) audible at the LLSB and apex</t>\n
+        <t>2. A double-component Austin Flint murmur at the apex</t>\n
+        <t>t3. The diastolic AR murmur (DM)</t>\n
+        &#8226; Sound increases with handgrip/squat and decreases with valsalva\n
+        &#8226; Classic AR valve disease:\n
+        <t>&#8226; Left mid-sternal border: AR diastolic murmur +</t>\n
+        <t>&#8226; LLSB: Mid-systolic ejection murmur ±</t>\n
+        <t>&#8226; Apex: Austin Flint murmur +, mid-systolic ejection murmur</t>\n
+        &#8226; Aortic root disease can be heard at RUSB\n
+    </string>
+
+    <string name="mitralstenosis1">
+        <b>Mitral Stenosis – Left Upper Sternal Border</b>\n
+        &#8226; MS is associated with pulmonary hypertension and can produce jugular venous distention with giant α waves\n
+        &#8226; To differentiate the MS rumble from the Austin Flint murmur, since both are heard at the apex\n
+        &#8226; The S1 is not loud with the Austin Flint murmur\n
+        &#8226; The Austin Flint murmur has 2 components to the diastolic rumblings (“fro-fro” cadence)\n
+        &#8226; In true AR, the AR diastolic murmur is audible at the LLSB (valve disease) or the RUSB (root disease), in addition to the apical Austin Flint murmur\n
+        &#8226; Mitral stenosis is not associated with murmurs audible at the LLSB or RUSB, but an opening snap may be heard there\n\n
+        <b>Etiology</b>\n
+        &#8226; Almost exclusively, MS is a consequence of rheumatic heard disease\n
+        &#8226; Congenital malformations of the MV are rare\n\n
+        <b>Where to listen</b>\n
+        &#8226; Apex only; best heard with bell in left lateral decubitus position\n
+        &#8226; Opening snap (OS) audible in many listening areas, such as at the LUSB in this example\n
+        &#8226; Murmur is louder with exercise and tachycardia\n
+        &#8226; Easily missed\n
+        &#8226; The opening snap is a tip-off\n
+    </string>
+
+
+
+
 </resources>
