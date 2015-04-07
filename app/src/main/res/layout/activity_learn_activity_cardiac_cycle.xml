@@ -32,6 +32,12 @@
                 android:layout_height="wrap_content"
                 android:text="@string/cardiac_cycle2"
                 android:id="@+id/textView5" />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/imageView2"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/diagramcardiac" />
         </LinearLayout>
     </ScrollView>
 

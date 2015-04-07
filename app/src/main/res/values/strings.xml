@@ -35,4 +35,9 @@
     <string name="score_name_4">Aortic Valve</string>
     <string name="score_name_5">Pulmonary Valve</string>
     <string name="score_name_6">Tricuspid Valve</string>
+    <string name="title_activity_test_fragment">TestFragmentActivity</string>
+
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_test">TestActivity</string>
 </resources>

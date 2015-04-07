@@ -14,6 +14,8 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
+import com.example.admin.heartbeat.util.TestActivity;
+
 
 public class LearnActivityBasics extends ActionBarActivity {
 
@@ -111,7 +113,10 @@ public class LearnActivityBasics extends ActionBarActivity {
             Intent intent = new Intent(this, LearnActivityMitralRegurgitation.class);
             startActivity(intent);
         }
-
+        else if (id ==9) {
+            Intent intent = new Intent(this, TestActivity.class);
+            startActivity(intent);
+        }
         view.startAnimation(buttonAnimation());
 
     }

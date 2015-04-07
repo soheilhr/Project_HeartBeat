@@ -121,6 +121,7 @@ public class radarGraph extends SurfaceView {
         Paint fill = new Paint();
         fill.setColor(getResources().getColor(R.color.navy_blue));
         fill.setStyle(Style.FILL);
+
         Path wallpath = new Path();
         wallpath.reset();
         wallpath.moveTo(vertices[0][0],vertices[0][1]);

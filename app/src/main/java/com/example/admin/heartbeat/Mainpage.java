@@ -5,6 +5,7 @@ import com.example.admin.heartbeat.util.SystemUiHider;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.support.v7.app.ActionBarActivity;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -23,7 +24,7 @@ import android.view.animation.Animation;
  *
  * @see SystemUiHider
  */
-public class Mainpage extends Activity {
+public class Mainpage extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
