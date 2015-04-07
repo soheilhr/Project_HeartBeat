@@ -7,17 +7,42 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
-
+import android.widget.ProgressBar;
+import android.os.Handler;
 
 public class LearnActivityAorticStenosis extends ActionBarActivity {
 
-    MediaPlayer mplayer;
+    private MediaPlayer mplayer;
+    private ProgressBar soundBar;
+    private int soundBarStatus;
+    private Handler soundHandler = new Handler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_learn_activity_aortic_stenosis);
         mplayer = MediaPlayer.create(getApplicationContext(),R.raw.hs1);
+
+        // Set up progress bar
+        soundBar = (ProgressBar) findViewById(R.id.progressBar1);
+        soundBar.setMax(mplayer.getDuration());
+        soundBar.setProgress(0);
+
+        // Start progress bar thread
+        new Thread(new Runnable() {
+            public void run() {
+                while (true) {
+                    if (mplayer.isPlaying()) {
+                        // Update the progress bar
+                        soundHandler.post(new Runnable() {
+                            public void run() {
+                                soundBar.setProgress(mplayer.getCurrentPosition());
+                            }
+                        });
+                    }
+                }
+            }
+        }).start();
     }
 
 
@@ -56,12 +81,14 @@ public class LearnActivityAorticStenosis extends ActionBarActivity {
             mplayer.prepareAsync();
             ImageButton b = (ImageButton)view;
             b.setBackgroundResource(R.drawable.playicon);
+
         }
         else {
             mplayer.start();
             mplayer.setLooping(true);
             ImageButton b = (ImageButton) view;
             b.setBackgroundResource(R.drawable.pauseicon);
+
         }
     }
 }
