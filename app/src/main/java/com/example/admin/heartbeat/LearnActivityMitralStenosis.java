@@ -1,23 +1,47 @@
 package com.example.admin.heartbeat;
 
 import android.media.MediaPlayer;
+import android.os.Handler;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ProgressBar;
 
 
 public class LearnActivityMitralStenosis extends ActionBarActivity {
 
     MediaPlayer mplayer;
-
+    private ProgressBar soundBar;
+    private int soundBarStatus;
+    private Handler soundHandler = new Handler();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_learn_activity_mitral_stenosis);
         mplayer = MediaPlayer.create(getApplicationContext(),R.raw.hs7);
+        // Set up progress bar
+        soundBar = (ProgressBar) findViewById(R.id.progressBar3);
+        soundBar.setMax(mplayer.getDuration());
+        soundBar.setProgress(0);
+
+        // Start progress bar thread
+        new Thread(new Runnable() {
+            public void run() {
+                while (true) {
+                    if (mplayer.isPlaying()) {
+                        // Update the progress bar
+                        soundHandler.post(new Runnable() {
+                            public void run() {
+                                soundBar.setProgress(mplayer.getCurrentPosition());
+                            }
+                        });
+                    }
+                }
+            }
+        }).start();
     }
 
 
