@@ -158,8 +158,13 @@ public class Mainpage extends Activity {
 
     public void practicefunction(View view) {
         // Do something in response to button
+        Intent intent = new Intent(this, Practice.class);
+        ((MyApplication) this.getApplication()).setMetrics(measures);
+        startActivity(intent);
+    }
+    public void gamefunction(View view) {
+        // Do something in response to button
         Intent intent = new Intent(this, Game1.class);
-        measures[1]=0.99;
         ((MyApplication) this.getApplication()).setMetrics(measures);
         startActivity(intent);
     }

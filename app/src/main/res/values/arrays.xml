@@ -30,7 +30,17 @@
         <item>@drawable/hsblue7</item>
         <item>@drawable/hsblue8</item>
     </array>
-    <array name="cond">
+    <array name="blwave">
+        <item>@drawable/hsblack1</item>
+        <item>@drawable/hsblack2</item>
+        <item>@drawable/hsblack3</item>
+        <item>@drawable/hsblack4</item>
+        <item>@drawable/hsblack5</item>
+        <item>@drawable/hsblack6</item>
+        <item>@drawable/hsblack7</item>
+        <item>@drawable/hsblack8</item>
+    </array>
+<array name="cond">
     <item><string>Aortic Stenosis</string></item>
     <item><string>Mitral Regurgitation</string></item>
     <item><string>Mitral Valve Prolapse</string></item>
@@ -40,6 +50,18 @@
     <item><string>Mitral Stenosis</string></item>
     <item><string>Tricuspid Stenosis</string></item>
 </array>
+
+    <array name="tips">
+        <item><string>Systole: Crescendo-decrescendo, harsh, late peaking murmur.\nDiastole: S4</string></item>
+        <item><string>Systole: Rectangular murmur, mid-frequency.\nDiastole: S3\nUse chestpiece bell to improve S3 sound.</string></item>
+        <item><string>Systole: Click then late systolic diamond shaped murmur.</string></item>
+        <item><string>S1: Increased intensity. Can be loudest at tricuspid area (4th ICS).\nSystole: Diamond-shaped, early peaking, harsh.\nDiastole: S4 gallop is</string></item>
+        <item><string>S1: Can be soft.\nSystole: Murmur may be present.\nDiastole: Early diastole</string></item>
+        <item><string>Diastole: High pitch, decrescendo murmur, increases with inspiration</string></item>
+        <item><string>S1: Increased\nDiastole: Opening snap followed by diamond shaped, low pitched murmur.</string></item>
+        <item><string>S1: Increased intensity.\nDiastole: Opening snap followed by diamond shaped, low pitched</string></item>
+    </array>
+
 
     <array name="meas">
         <item>1</item>

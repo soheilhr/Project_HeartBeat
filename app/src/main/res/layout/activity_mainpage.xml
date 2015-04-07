@@ -95,7 +95,8 @@
                 android:src="@drawable/challengeicon"
                 android:scaleType="fitCenter"
                 android:background="@color/white"
-                android:layout_weight="0.3" />
+                android:layout_weight="0.3"
+                android:onClick="gamefunction" />
         </LinearLayout>
 
     </LinearLayout>

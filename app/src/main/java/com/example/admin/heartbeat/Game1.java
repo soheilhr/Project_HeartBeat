@@ -1,5 +1,6 @@
 package com.example.admin.heartbeat;
 
+import android.content.Intent;
 import android.content.res.TypedArray;
 import android.media.AudioManager;
 import android.media.*;
@@ -29,7 +30,9 @@ public class Game1 extends ActionBarActivity implements View.OnClickListener {
     private int score1,score2,correctbutton,level,cnt,cnt1,cnt2;
     private MediaPlayer mediaPlayer1,mediaPlayer2;
     private double[] measures,tmpmeasures;
-    private int[] currentcondition=new int[]{0,0,0};
+    private int[] currentcondition=new int[]{-1,-2,-3};
+    private CountDownTimer ti1,ti2;
+    private Boolean flag1;
     private Thread t1 = new Thread(new Runnable() {
         public void run() {
             /////
@@ -46,8 +49,8 @@ public class Game1 extends ActionBarActivity implements View.OnClickListener {
     @Override
     protected void onStop() {
         super.onStop();
-        mediaPlayer1.stop();
-        mediaPlayer2.stop();
+        mediaPlayer1.pause();
+        mediaPlayer2.pause();
     }
 
     @Override
@@ -70,30 +73,39 @@ public class Game1 extends ActionBarActivity implements View.OnClickListener {
         cnt1=0;
         cnt2=0;
         level=1;
+        flag1=true;
         scoreRed.setVisibility(View.INVISIBLE);
         redtext.setVisibility(View.INVISIBLE);
-        new CountDownTimer(100000, 1000) {
+
+        ti1= new CountDownTimer(100000, 1000) {
 
             public void onTick(long millisUntilFinished) {
-                cnt1=(cnt1+1)%4;
+
                 remTime.setText(""+millisUntilFinished / 1000);
-                scoreRed.setText("222");
-                if(cnt1==0) {
-                    if(mediaPlayer1.isPlaying())
-                    {
-                        mediaPlayer1.stop();
-                    }
-                    if(mediaPlayer2.isPlaying())
-                    {
-                        mediaPlayer2.stop();
-                    }
+                if(flag1) {
+                    cnt1 = (cnt1 + 1) % 4;
+                    //remTime.setText(""+millisUntilFinished / 1000);
+                    ///scoreRed.setText("222");
+                    if (cnt1 == 0) {
+                        if (mediaPlayer1.isPlaying()) {
+                            mediaPlayer1.stop();
+                        }
+                        if (mediaPlayer2.isPlaying()) {
+                            mediaPlayer2.stop();
+                        }
 
-
-                    if (cnt2 == 0) mediaPlayer1.start();
-                    else mediaPlayer2.start();
-                    cnt2 = (cnt2 + 1) % 2;
+                        if (cnt2 == 0) mediaPlayer1.start();
+                        else mediaPlayer2.start();
+                        cnt2 = (cnt2 + 1) % 2;
+                    }
                 }
-                scoreRed.setText(""+score2);
+                else
+                {
+                    mediaPlayer1.pause();
+                    mediaPlayer2.pause();
+                    mediaPlayer1.reset();
+                    mediaPlayer2.reset();
+                }
             }
 
             public void onFinish() {
@@ -103,7 +115,9 @@ public class Game1 extends ActionBarActivity implements View.OnClickListener {
                 ((MyApplication) getApplication()).setMetrics(measures);
                 finish();
             }
-        }.start();
+        };
+        ti1.start();
+
                 t1.start();
                 t2.start();
 
@@ -114,6 +128,20 @@ public class Game1 extends ActionBarActivity implements View.OnClickListener {
      * Update timer on seekbar
      * */
 
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        flag1=true;
+
+
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        getcondition(1);
+    }
 
     /**
      * Background Runnable thread
@@ -147,8 +175,8 @@ public class Game1 extends ActionBarActivity implements View.OnClickListener {
 
     public void getcondition(int level){
         Random r = new Random();
-        int i1 = (r.nextInt(9-1));
-        int i2=(r.nextInt(9-1));
+        int i1 = (r.nextInt(8-0)+0);
+        int i2=(r.nextInt(8-0)+0);
         while(i2==i1)i2=(r.nextInt(9-1));
 
         TypedArray ids = getResources().obtainTypedArray(R.array.hsound);
@@ -164,7 +192,8 @@ public class Game1 extends ActionBarActivity implements View.OnClickListener {
         TypedArray ids3 = getResources().obtainTypedArray(R.array.rwave);
         bluebar.setBackgroundResource(ids2.getResourceId(i1,-1));
         redbar.setBackgroundResource(ids3.getResourceId(i2,-1));
-        correctbutton=(r.nextInt(3-1));
+        correctbutton=(r.nextInt(3-1)+1);
+
         TypedArray ids4 = getResources().obtainTypedArray(R.array.cond);
        /// idtmp=ids3.getString(i1);//getResourceId(i1,-1);
         if(correctbutton==1)condition.setText(ids4.getString(i1));
@@ -183,12 +212,19 @@ public class Game1 extends ActionBarActivity implements View.OnClickListener {
         TypedArray tmpids = getResources().obtainTypedArray(R.array.meas);
         tmpmeasures[tmpids.getInt(currentcondition[choice],-1)]=(tmpmeasures[tmpids.getInt(currentcondition[choice],-1)]+1);
         tmpmeasures[5]=tmpmeasures[5]+1;
+        getcondition(level);
     }
 
     void gotfalse(int choice){
         TypedArray tmpids = getResources().obtainTypedArray(R.array.meas);
+        ///condition.setText(""+currentcondition[choice]+"s"+choice+"d"+correctbutton);
         tmpmeasures[tmpids.getInt(currentcondition[choice],-1)]=(tmpmeasures[tmpids.getInt(currentcondition[choice],-1)]-1);
         tmpmeasures[5]=tmpmeasures[5]+1;
+        Intent intent = new Intent(this, Listeningtips.class);
+        intent.putExtra("Id",currentcondition[choice]);
+        startActivity(intent);
+        flag1=false;
+        ///getcondition(level);
     }
     void calculatemeasures()
     {
@@ -234,7 +270,7 @@ public class Game1 extends ActionBarActivity implements View.OnClickListener {
             gotfalse(correctbutton);
         }
         ///else ;
-        getcondition(level);
+
         //int i1 = (r.nextInt(8-0));
         //score1=i1;
 
