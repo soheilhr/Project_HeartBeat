@@ -37,12 +37,11 @@ public class radarGraph extends SurfaceView {
 
     private void init(){
         surfaceHolder = getHolder();
-        bmpAxes = BitmapFactory.decodeResource(getResources(),
-                R.drawable.diagram);
+        bmpAxes = BitmapFactory.decodeResource(getResources(),R.drawable.diagram);
         Bitmap scaledBitmap = Bitmap.createScaledBitmap(bmpAxes,1200,1200,true);
         bmpAxes.recycle();
         bmpAxes = scaledBitmap;
-        surfaceHolder.addCallback(new SurfaceHolder.Callback(){
+        surfaceHolder.addCallback(new SurfaceHolder.Callback() {
 
             @Override
             public void surfaceCreated(SurfaceHolder holder) {
@@ -63,7 +62,8 @@ public class radarGraph extends SurfaceView {
             public void surfaceDestroyed(SurfaceHolder holder) {
                 // TODO Auto-generated method stub
 
-            }});
+            }
+        });
     }
 
     protected void drawBackground(Canvas canvas) {
@@ -74,35 +74,49 @@ public class radarGraph extends SurfaceView {
         int x_origin = getWidth()/2 - bmpAxes.getWidth()/2;
         int y_origin = getHeight()/2 - bmpAxes.getHeight()/2;
         canvas.drawBitmap(bmpAxes,x_origin, y_origin, null);
+
+        // Write text
+        Paint paintText = new Paint();
+        paintText.setColor(Color.WHITE);
+        paintText.setTextSize(50);
+        paintText.setTextAlign(Paint.Align.CENTER);
+        Paint paintTextBorder = new Paint();
+        paintTextBorder.setColor(Color.rgb(150,150,150));
+        paintTextBorder.setTextSize(50);
+        paintTextBorder.setTextAlign(Paint.Align.CENTER);
+        paintTextBorder.setStyle(Paint.Style.STROKE);
+        paintTextBorder.setStrokeWidth(10);
+
+        double[] score;
+        score = new double[6];
+        score[0]=560;score[1]=560;score[2]=520;score[3]=560;score[4]=470;score[5]=490;
+        int vertices[][];
+        vertices = getScorePosition(score);
+
+        // Draw text on diagram
+        canvas.drawText(getResources().getString(R.string.score_name_1), vertices[0][0], vertices[0][1], paintTextBorder);
+        canvas.drawText(getResources().getString(R.string.score_name_2), vertices[1][0], vertices[1][1], paintTextBorder);
+        canvas.drawText(getResources().getString(R.string.score_name_3), vertices[2][0], vertices[2][1], paintTextBorder);
+        canvas.drawText(getResources().getString(R.string.score_name_4), vertices[3][0], vertices[3][1], paintTextBorder);
+        canvas.drawText(getResources().getString(R.string.score_name_5), vertices[4][0], vertices[4][1], paintTextBorder);
+        canvas.drawText(getResources().getString(R.string.score_name_6), vertices[5][0], vertices[5][1], paintTextBorder);
+
+        canvas.drawText(getResources().getString(R.string.score_name_1), vertices[0][0], vertices[0][1], paintText);
+        canvas.drawText(getResources().getString(R.string.score_name_2), vertices[1][0], vertices[1][1], paintText);
+        canvas.drawText(getResources().getString(R.string.score_name_3), vertices[2][0], vertices[2][1], paintText);
+        canvas.drawText(getResources().getString(R.string.score_name_4), vertices[3][0], vertices[3][1], paintText);
+        canvas.drawText(getResources().getString(R.string.score_name_5), vertices[4][0], vertices[4][1], paintText);
+        canvas.drawText(getResources().getString(R.string.score_name_6), vertices[5][0], vertices[5][1], paintText);
     }
+
 
     protected void drawPlot(Canvas canvas) {
         // Get score TODO: Setup scoring framework
         double[] score;
         score = new double[6];
         score[0]=475;score[1]=280;score[2]=250;score[3]=220;score[4]=270;score[5]=250;
-
-        int x_centre = (int) getWidth()/2;
-        int y_centre = (int) getHeight()/2;
-        // Calculate vertices
         int vertices[][];
-        vertices = new int[6][2];
-
-        double deg30 = Math.PI/6;
-        double deg60 = Math.PI/3;
-
-        vertices[0][0]= x_centre + (int)( score[0] * (Math.cos(deg30+1*deg60)) );
-        vertices[0][1]= y_centre + (int)( score[0] * (Math.sin(deg30+1*deg60)) );
-        vertices[1][0]= x_centre + (int)( score[1] * (Math.cos(deg30+0*deg60)) );
-        vertices[1][1]= y_centre + (int)( score[1] * (Math.sin(deg30+0*deg60)) );
-        vertices[2][0]= x_centre + (int)( score[2] * (Math.cos(deg30+5*deg60)) );
-        vertices[2][1]= y_centre + (int)( score[2] * (Math.sin(deg30+5*deg60)) );
-        vertices[3][0]= x_centre + (int)( score[3] * (Math.cos(deg30+4*deg60)) );
-        vertices[3][1]= y_centre + (int)( score[3] * (Math.sin(deg30+4*deg60)) );
-        vertices[4][0]= x_centre + (int)( score[4] * (Math.cos(deg30+3*deg60)) );
-        vertices[4][1]= y_centre + (int)( score[4] * (Math.sin(deg30+3*deg60)) );
-        vertices[5][0]= x_centre + (int)( score[5] * (Math.cos(deg30+2*deg60)) );
-        vertices[5][1]= y_centre + (int)( score[5] * (Math.sin(deg30+2*deg60)) );
+        vertices = getScorePosition(score);
         // Draw score shape
         Paint fill = new Paint();
         fill.setColor(getResources().getColor(R.color.navy_blue));
@@ -128,6 +142,31 @@ public class radarGraph extends SurfaceView {
         //canvas.drawLine(vertices[3][0],vertices[3][1],vertices[4][0],vertices[4][1], paint);
         //canvas.drawLine(vertices[4][0],vertices[4][1],vertices[5][0],vertices[5][1], paint);
         //canvas.drawLine(vertices[5][0],vertices[5][1],vertices[0][0],vertices[0][1], paint);
+    }
+
+    private int [][] getScorePosition(double[] score) {
+        // Get score TODO: Setup scoring framework
+        int x_centre = (int) getWidth()/2;
+        int y_centre = (int) getHeight()/2;
+        // Calculate vertices
+        int vertices[][];
+        vertices = new int[6][2];
+        double deg30 = Math.PI/6;
+        double deg60 = Math.PI/3;
+        vertices[0][0]= x_centre + (int)( score[0] * (Math.cos(deg30+1*deg60)) );
+        vertices[0][1]= y_centre + (int)( score[0] * (Math.sin(deg30+1*deg60)) );
+        vertices[1][0]= x_centre + (int)( score[1] * (Math.cos(deg30+0*deg60)) );
+        vertices[1][1]= y_centre + (int)( score[1] * (Math.sin(deg30+0*deg60)) );
+        vertices[2][0]= x_centre + (int)( score[2] * (Math.cos(deg30+5*deg60)) );
+        vertices[2][1]= y_centre + (int)( score[2] * (Math.sin(deg30+5*deg60)) );
+        vertices[3][0]= x_centre + (int)( score[3] * (Math.cos(deg30+4*deg60)) );
+        vertices[3][1]= y_centre + (int)( score[3] * (Math.sin(deg30+4*deg60)) );
+        vertices[4][0]= x_centre + (int)( score[4] * (Math.cos(deg30+3*deg60)) );
+        vertices[4][1]= y_centre + (int)( score[4] * (Math.sin(deg30+3*deg60)) );
+        vertices[5][0]= x_centre + (int)( score[5] * (Math.cos(deg30+2*deg60)) );
+        vertices[5][1]= y_centre + (int)( score[5] * (Math.sin(deg30+2*deg60)) );
+
+        return vertices;
     }
 
 }

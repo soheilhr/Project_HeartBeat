@@ -1,17 +1,23 @@
 package com.example.admin.heartbeat;
 
+import android.media.MediaPlayer;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageButton;
 
 
 public class LearnActivityAorticStenosis extends ActionBarActivity {
+
+    MediaPlayer mplayer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_learn_activity_aortic_stenosis);
+        mplayer = MediaPlayer.create(getApplicationContext(),R.raw.hs1);
     }
 
 
@@ -35,5 +41,27 @@ public class LearnActivityAorticStenosis extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+    @Override
+    public void onPause() {
+        if( mplayer.isPlaying() ) {
+            mplayer.stop();
+        }
+        super.onPause();
+    }
+
+    public void onButtonClickPlay(View view){
+        if (mplayer.isPlaying()){
+            mplayer.stop();
+            mplayer.prepareAsync();
+            ImageButton b = (ImageButton)view;
+            b.setBackgroundResource(R.drawable.playicon);
+        }
+        else {
+            mplayer.start();
+            mplayer.setLooping(true);
+            ImageButton b = (ImageButton) view;
+            b.setBackgroundResource(R.drawable.pauseicon);
+        }
     }
 }
