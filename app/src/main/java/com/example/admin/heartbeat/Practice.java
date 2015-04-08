@@ -4,6 +4,7 @@ import com.example.admin.heartbeat.util.SystemUiHider;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.TypedArray;
 import android.media.MediaPlayer;
@@ -12,6 +13,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
+import android.os.Vibrator;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -304,6 +306,9 @@ public class Practice extends ActionBarActivity implements View.OnClickListener 
         startActivity(intent);
         scoreBlue.setText(String.format("%d",score1));
         flag1=false;
+        Vibrator v = (Vibrator) this.getApplicationContext().getSystemService(Context.VIBRATOR_SERVICE);
+        // Vibrate for 500 milliseconds
+        v.vibrate(500);
         getcondition(level);
     }
     void calculatemeasures()
