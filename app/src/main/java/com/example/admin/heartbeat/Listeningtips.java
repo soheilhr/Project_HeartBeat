@@ -26,7 +26,7 @@ public class Listeningtips extends ActionBarActivity {
     private Thread t1 = new Thread(new Runnable() {
         public void run() {
             /////
-           /// while(true){bar.setProgress((mediaPlayer1.getCurrentPosition()/30));}
+            /// while(true){bar.setProgress((mediaPlayer1.getCurrentPosition()/30));}
         }
     });
     @Override
@@ -39,9 +39,9 @@ public class Listeningtips extends ActionBarActivity {
         bar = (ProgressBar) findViewById(R.id.CorrectBar);
         readybutton =(Button) findViewById(R.id.readyButton);
         ///waitTime.setText("salam");
-       ///readybutton.setVisibility(Button.INVISIBLE);
-       /// ((Button) findViewById(R.id.readyButton));
-       ///readybutton.setOnClickListener(this);
+        ///readybutton.setVisibility(Button.INVISIBLE);
+        /// ((Button) findViewById(R.id.readyButton));
+        ///readybutton.setOnClickListener(this);
 
         Intent intent = getIntent();
         int i1=intent.getIntExtra("Id",-1);
@@ -99,7 +99,7 @@ public class Listeningtips extends ActionBarActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_listeningtips, menu);
+        getMenuInflater().inflate(R.menu.menu_bar, menu);
         return true;
     }
 

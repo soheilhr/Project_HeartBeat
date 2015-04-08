@@ -17,6 +17,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -32,38 +34,38 @@ import java.util.Random;
  * @see SystemUiHider
  */
 public class Practice extends ActionBarActivity implements View.OnClickListener  {
-private TextView scoreBlue,scoreRed,condition,remTime,redtext,timetext,scoretext;
-private ProgressBar bluebar,redbar;
-private int score1,score2,correctbutton,level,cnt,cnt1,cnt2;
-private MediaPlayer mediaPlayer1,mediaPlayer2;
-private double[] measures,tmpmeasures;
-private int[] currentcondition=new int[]{-1,-2,-3};
-private CountDownTimer ti1,ti2;
-private Boolean flag1=false,mp1ready=false,mp2ready=false;
+    private TextView scoreBlue,scoreRed,condition,remTime,redtext,timetext,scoretext;
+    private ProgressBar bluebar,redbar;
+    private int score1,score2,correctbutton,level,cnt,cnt1,cnt2;
+    private MediaPlayer mediaPlayer1,mediaPlayer2;
+    private double[] measures,tmpmeasures;
+    private int[] currentcondition=new int[]{-1,-2,-3};
+    private CountDownTimer ti1,ti2;
+    private Boolean flag1=false,mp1ready=false,mp2ready=false;
 
 
 
-private Thread t1 = new Thread(new Runnable() {
-public void run() {
-        /////
-        while(true){bluebar.setProgress((mediaPlayer1.getCurrentPosition()/30));}
+    private Thread t1 = new Thread(new Runnable() {
+        public void run() {
+            /////
+            while(true){bluebar.setProgress((mediaPlayer1.getCurrentPosition()/30));}
         }
-        });
-private Thread t2 = new Thread(new Runnable() {
-public void run() {
-        /////
-        while(true){redbar.setProgress((mediaPlayer2.getCurrentPosition()/30));}
+    });
+    private Thread t2 = new Thread(new Runnable() {
+        public void run() {
+            /////
+            while(true){redbar.setProgress((mediaPlayer2.getCurrentPosition()/30));}
         }
-        });
+    });
 
-@Override
-protected void onStop() {
+    @Override
+    protected void onStop() {
         super.onStop();
 
-        }
+    }
 
-@Override
-protected void onCreate(Bundle savedInstanceState) {
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_practice);
 
@@ -77,12 +79,12 @@ protected void onCreate(Bundle savedInstanceState) {
         bluebar = (ProgressBar) findViewById(R.id.progressBarBlue);
         redbar = (ProgressBar) findViewById(R.id.progressBarRed);
 
-    scoretext.setText("Win Strike");
+        scoretext.setText("Win Strike");
 
 
 
 
-    ((ImageButton) findViewById(R.id.redButton)).setOnClickListener(this);
+        ((ImageButton) findViewById(R.id.redButton)).setOnClickListener(this);
         ((ImageButton) findViewById(R.id.blueButton)).setOnClickListener(this);
         tmpmeasures=new double[]{0,0,0,0,0,0};
         getcondition(1);
@@ -102,59 +104,59 @@ protected void onCreate(Bundle savedInstanceState) {
 
 
 
-    ti1= new CountDownTimer(100000, 1000) {
-public void onTick(long millisUntilFinished) {
+        ti1= new CountDownTimer(100000, 1000) {
+            public void onTick(long millisUntilFinished) {
 
-        remTime.setText(""+millisUntilFinished / 1000);
-        if(flag1) {
-        cnt1 = (cnt1 + 1) % 4;
-        //remTime.setText(""+millisUntilFinished / 1000);
-        ///scoreRed.setText("222");
-        if (cnt1 == 0) {
-        if (mediaPlayer1.isPlaying()) {
-        mediaPlayer1.stop();
-        }
-        if (mediaPlayer2.isPlaying()) {
-        mediaPlayer2.stop();
-        }
+                remTime.setText(""+millisUntilFinished / 1000);
+                if(flag1) {
+                    cnt1 = (cnt1 + 1) % 4;
+                    //remTime.setText(""+millisUntilFinished / 1000);
+                    ///scoreRed.setText("222");
+                    if (cnt1 == 0) {
+                        if (mediaPlayer1.isPlaying()) {
+                            mediaPlayer1.stop();
+                        }
+                        if (mediaPlayer2.isPlaying()) {
+                            mediaPlayer2.stop();
+                        }
 
-        if (cnt2 == 0)
-        {
-            if(mp1ready) {
-                mediaPlayer1.start();
+                        if (cnt2 == 0)
+                        {
+                            if(mp1ready) {
+                                mediaPlayer1.start();
 
+                            }
+                        }
+                        else
+                        {
+                            if(mp2ready)mediaPlayer2.start();
+
+
+                        }
+                        cnt2 = (cnt2 + 1) % 2;
+                    }
+                }
+                else
+                {
+                    if (mediaPlayer1.isPlaying()) {
+                        mediaPlayer1.stop();
+                    }
+                    if (mediaPlayer2.isPlaying()) {
+                        mediaPlayer2.stop();
+                    }
+                }
             }
-        }
-        else
-        {
-            if(mp2ready)mediaPlayer2.start();
 
 
-        }
-        cnt2 = (cnt2 + 1) % 2;
-        }
-        }
-        else
-        {
-            if (mediaPlayer1.isPlaying()) {
-                mediaPlayer1.stop();
+
+            public void onFinish() {
+                // set
+                ///measures = ((MyApplication) getApplication()).getMetrics();
+                ///calculatemeasures();
+                ///((MyApplication) getApplication()).setMetrics(measures);
+                /// finish();
+                ti1.start();
             }
-            if (mediaPlayer2.isPlaying()) {
-                mediaPlayer2.stop();
-            }
-        }
-        }
-
-
-
-public void onFinish() {
-        // set
-        ///measures = ((MyApplication) getApplication()).getMetrics();
-        ///calculatemeasures();
-        ///((MyApplication) getApplication()).setMetrics(measures);
-       /// finish();
-        ti1.start();
-        }
         };
 
         ti1.start();
@@ -162,7 +164,7 @@ public void onFinish() {
         t1.start();
         t2.start();
 
-        }
+    }
 
     @Override
     protected void onRestart() {
@@ -171,49 +173,49 @@ public void onFinish() {
     }
 
     /**
- * Update timer on seekbar
- * */
+     * Update timer on seekbar
+     * */
 
 
-@Override
-protected void onResume() {
+    @Override
+    protected void onResume() {
         super.onResume();
-    if(!flag1)
-    {
-        getcondition(1);
-        flag1=true;
+        if(!flag1)
+        {
+            getcondition(1);
+            flag1=true;
+
+        }
+
+
+
 
     }
 
-
-
-
-        }
-
-@Override
-protected void onPause() {
+    @Override
+    protected void onPause() {
         super.onPause();
 
         flag1=false;
-        }
+    }
 
-/**
- * Background Runnable thread
- * */
-
-
+    /**
+     * Background Runnable thread
+     * */
 
 
 
-@Override
-public boolean onCreateOptionsMenu(Menu menu) {
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_game1, menu);
         return true;
-        }
+    }
 
-@Override
-public boolean onOptionsItemSelected(MenuItem item) {
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
@@ -221,13 +223,13 @@ public boolean onOptionsItemSelected(MenuItem item) {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-        return true;
+            return true;
         }
 
         return super.onOptionsItemSelected(item);
-        }
+    }
 
-private void getcondition(int level) {
+    private void getcondition(int level) {
         Random r = new Random();
         int i1 = (r.nextInt(8-0)+0);
         int i2=(r.nextInt(8-0)+0);
@@ -242,29 +244,29 @@ private void getcondition(int level) {
         mp1ready=false;
         mediaPlayer1=MediaPlayer.create(this, id1);
         mediaPlayer1.setOnPreparedListener(new OnPreparedListener() {
-        @Override
-        public void onPrepared(MediaPlayer mp) {
-            mp1ready=true;
+            @Override
+            public void onPrepared(MediaPlayer mp) {
+                mp1ready=true;
 
-        }
-    });
-
-
-
-    mp2ready=false;
-    mediaPlayer2=MediaPlayer.create(this, id2);
-    mediaPlayer2.setOnPreparedListener(new OnPreparedListener() {
-        @Override
-        public void onPrepared(MediaPlayer mp) {
-            mp2ready=true;
-
-        }
-    });
+            }
+        });
 
 
 
+        mp2ready=false;
+        mediaPlayer2=MediaPlayer.create(this, id2);
+        mediaPlayer2.setOnPreparedListener(new OnPreparedListener() {
+            @Override
+            public void onPrepared(MediaPlayer mp) {
+                mp2ready=true;
 
-    TypedArray ids2 = getResources().obtainTypedArray(R.array.bwave);
+            }
+        });
+
+
+
+
+        TypedArray ids2 = getResources().obtainTypedArray(R.array.bwave);
         TypedArray ids3 = getResources().obtainTypedArray(R.array.rwave);
         bluebar.setBackgroundResource(ids2.getResourceId(i1,-1));
         redbar.setBackgroundResource(ids3.getResourceId(i2,-1));
@@ -280,18 +282,18 @@ private void getcondition(int level) {
         //bluebar =
         //correctbutton =
 
-        }
+    }
 
-        void gotcorrect(int choice){
+    void gotcorrect(int choice){
         score1 = score1+1;
         TypedArray tmpids = getResources().obtainTypedArray(R.array.meas);
         tmpmeasures[tmpids.getInt(currentcondition[choice],-1)]=(tmpmeasures[tmpids.getInt(currentcondition[choice],-1)]+1);
         tmpmeasures[5]=tmpmeasures[5]+1;
-            scoreBlue.setText(String.format("%d",score1));
-            getcondition(level);
-        }
+        scoreBlue.setText(String.format("%d",score1));
+        getcondition(level);
+    }
 
-        void gotfalse(int choice){
+    void gotfalse(int choice){
         score1=0;
         TypedArray tmpids = getResources().obtainTypedArray(R.array.meas);
         ///condition.setText(""+currentcondition[choice]+"s"+choice+"d"+correctbutton);
@@ -303,19 +305,19 @@ private void getcondition(int level) {
         scoreBlue.setText(String.format("%d",score1));
         flag1=false;
         getcondition(level);
-        }
-        void calculatemeasures()
-        {
+    }
+    void calculatemeasures()
+    {
         int tmpsign,tmpsum=0;
         double tmpnum;
         tmpnum=tmpmeasures[5];
         if(tmpnum==0)return;
         for(int i=1;i<5;i++)
         {
-        if((tmpmeasures[i]/tmpnum)<measures[i])tmpsign=-1;
-        else tmpsign=1;
-        measures[i]=measures[i]+0.1*tmpsign;
-        tmpsum=tmpsum+(int)tmpmeasures[i];
+            if((tmpmeasures[i]/tmpnum)<measures[i])tmpsign=-1;
+            else tmpsign=1;
+            measures[i]=measures[i]+0.1*tmpsign;
+            tmpsum=tmpsum+(int)tmpmeasures[i];
         }
         if((tmpsum/tmpnum)<measures[5])tmpsign=-1;
         else tmpsign=1;
@@ -323,34 +325,42 @@ private void getcondition(int level) {
         if((tmpnum/20)<measures[6])tmpsign=-1;
         else tmpsign=1;
         measures[6]=measures[6]+0.1*tmpsign;
-        }
+    }
 
-@Override
-public void onClick(View v) {
+    @Override
+    public void onClick(View v) {
+        v.startAnimation(buttonAnimation());
         int selectedButton=0;
 
         switch(v.getId()) {
-        case R.id.redButton:
-        selectedButton=2;
+            case R.id.redButton:
+                selectedButton=2;
 
 
-        break;
-        case R.id.blueButton:
-        selectedButton=1;
+                break;
+            case R.id.blueButton:
+                selectedButton=1;
 
-        ///chronometer.stop();
-        break;
+                ///chronometer.stop();
+                break;
         }
         if(selectedButton==correctbutton)
         {
-        gotcorrect(correctbutton);
+            gotcorrect(correctbutton);
         }else {
-        gotfalse(correctbutton);
+            gotfalse(correctbutton);
         }
         ///else ;
 
         //int i1 = (r.nextInt(8-0));
         //score1=i1;
 
-        }
+    }
+    private Animation buttonAnimation(){
+        Animation buttonAnim = new AlphaAnimation(0.2f,0.2f);
+        buttonAnim.setDuration(50);
+        buttonAnim.setFillEnabled(true);
+        buttonAnim.setFillAfter(false);
+        return buttonAnim;
+    }
 }
