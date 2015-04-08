@@ -1,5 +1,6 @@
 package com.example.admin.heartbeat;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.TypedArray;
 import android.media.AudioManager;
@@ -18,12 +19,16 @@ import android.widget.Chronometer;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-
+import android.app.Activity;
+import android.graphics.Point;
+import android.widget.LinearLayout;
+import android.view.LayoutInflater;
+import android.widget.PopupWindow;
 import java.io.IOException;
 import java.util.Random;
 import java.util.logging.Handler;
 import java.util.logging.LogRecord;
-
+import android.util.Log;
 
 
 public class Game1 extends ActionBarActivity implements View.OnClickListener {
@@ -38,13 +43,21 @@ public class Game1 extends ActionBarActivity implements View.OnClickListener {
     private Thread t1 = new Thread(new Runnable() {
         public void run() {
             /////
-            while(true){bluebar.setProgress((mediaPlayer1.getCurrentPosition()/30));}
+            while(true){
+                if (flag1){
+                    bluebar.setProgress((mediaPlayer1.getCurrentPosition()/30));
+                }
+            }
         }
     });
     private Thread t2 = new Thread(new Runnable() {
         public void run() {
             /////
-            while(true){redbar.setProgress((mediaPlayer2.getCurrentPosition()/30));}
+            while(true){
+                if (flag1){
+                    redbar.setProgress((mediaPlayer2.getCurrentPosition()/30));
+                }
+            }
         }
     });
 
@@ -227,11 +240,14 @@ public class Game1 extends ActionBarActivity implements View.OnClickListener {
         //correctbutton =
     }
     void gotcorrect(int choice){
+        Log.d("GameDebug","gotcorrect");
         score1 = score1+level*100;
         scoreBlue.setText(String.format("%03d",score1));
         TypedArray tmpids = getResources().obtainTypedArray(R.array.meas);
         tmpmeasures[tmpids.getInt(currentcondition[choice],-1)]=(tmpmeasures[tmpids.getInt(currentcondition[choice],-1)]+1);
         tmpmeasures[5]=tmpmeasures[5]+1;
+        Log.d("GameDebug","Show popup");
+        showPopup(this,true);
         getcondition(level);
     }
 
@@ -242,6 +258,10 @@ public class Game1 extends ActionBarActivity implements View.OnClickListener {
         tmpmeasures[5]=tmpmeasures[5]+1;
         ///Intent intent = new Intent(this, Listeningtips.class);
         ///intent.putExtra("Id",currentcondition[choice]);
+        // Show popup window
+        Log.d("GameDebug","Show popup");
+        showPopup(this,false);
+
         score2=score2+100;
         scoreRed.setText(String.format("%03d",score2));
         ///startActivity(intent);
@@ -271,6 +291,7 @@ public class Game1 extends ActionBarActivity implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
+        Log.d("GameDebug","Button clicked");
         v.startAnimation(buttonAnimation());
         int selectedButton=0;
 
@@ -305,4 +326,36 @@ public class Game1 extends ActionBarActivity implements View.OnClickListener {
         buttonAnim.setFillAfter(false);
         return buttonAnim;
     }
+
+    // Popup window
+    private void showPopup(final Activity context, Boolean win){
+        // Based off of https://androidresearch.wordpress.com/2012/05/06/how-to-create-popups-in-android/
+        int popupWidth = 300;
+        int popupHeight = 300;
+
+        // Inflate layout
+
+        LinearLayout viewGroup = (LinearLayout) context.findViewById(R.id.popup);
+        LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View layout = layoutInflater.inflate(R.layout.game_popup,viewGroup);
+
+        // Create popup window
+        final PopupWindow popup = new PopupWindow(context);
+        popup.setContentView(layout);
+        popup.setWidth(popupWidth);
+        popup.setHeight(popupHeight);
+        popup.setFocusable(true);
+
+        // Some offset
+
+        // Close popup when clicked
+        Button close = (Button) layout.findViewById(R.id.close);
+        close.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                popup.dismiss();
+            }
+        });
+    }
+
 }

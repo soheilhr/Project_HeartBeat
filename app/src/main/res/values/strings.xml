@@ -10,24 +10,24 @@
     <string name="title_activity_learn">LearnActivity</string>
 
     <string name="hello_world">Hello world!</string>
-    <string name="title_activity_practice">PracticeActivity</string>
-    <string name="title_activity_learn_home">LearnHomeActivity</string>
-    <string name="title_activity_learn_activity_basics">LearnActivityBasics</string>
+    <string name="title_activity_practice">Practice</string>
+    <string name="title_activity_learn_home">Learn</string>
+    <string name="title_activity_learn_activity_basics">Heart Sound Basics</string>
     <string name="title_activity_learn_activity_murmurs">LearnActivityMurmurs</string>
-    <string name="title_activity_learn_activity_cardiac_cycle">LearnActivityCardiacCycle</string>
-    <string name="title_activity_learn_activity_s1">LearnActivityS1</string>
-    <string name="title_activity_learn_activity_s2">LearnActivityS2</string>
-    <string name="title_activity_learn_activity_s3">LearnActivityS3</string>
-    <string name="title_activity_learn_activity_s4">LearnActivityS4</string>
-    <string name="title_activity_learn_activity_aortic_stenosis">LearnActivityAorticStenosis
+    <string name="title_activity_learn_activity_cardiac_cycle">Cardiac Cycle</string>
+    <string name="title_activity_learn_activity_s1">S1</string>
+    <string name="title_activity_learn_activity_s2">S2</string>
+    <string name="title_activity_learn_activity_s3">S3</string>
+    <string name="title_activity_learn_activity_s4">S4</string>
+    <string name="title_activity_learn_activity_aortic_stenosis">Aortic Stenosis
     </string>
-    <string name="title_activity_learn_activity_mitral_stenosis">LearnActivityMitralStenosis
+    <string name="title_activity_learn_activity_mitral_stenosis">Mitral Stenosis
     </string>
     <string name="title_activity_learn_activity_aortic_regurgitation">
-        LearnActivityAorticRegurgitation
+        Aortic Regurgitation
     </string>
     <string name="title_activity_learn_activity_mitral_regurgitation">
-        LearnActivityMitralRegurgitation
+        Mitral Regurgitation
     </string>
     <string name="title_activity_listeningtips">Tips</string>
     <string name="score_name_1">Speed</string>
@@ -42,6 +42,6 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_test">TestActivity</string>
     <string name="title_activity_beat">BeatActivity</string>
-    <string name="title_activity_game1">Game1</string>
+    <string name="title_activity_game1">Game</string>
     <string name="title_activity_learn_activity_all_sounds">LearnActivityAllSounds</string>
 </resources>

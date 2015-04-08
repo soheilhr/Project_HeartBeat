@@ -17,7 +17,8 @@
             android:layout_height="wrap_content"
             style="?android:attr/progressBarStyleHorizontal"
             android:id="@+id/progressBar4"
-            android:layout_gravity="center" />
+            android:layout_gravity="center"
+            android:background="@drawable/hsblack2" />
 
         <ImageButton
             android:layout_width="@dimen/icon_size_small"

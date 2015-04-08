@@ -29,7 +29,8 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/imageView2"
                 android:layout_gravity="center_horizontal"
-                android:background="@drawable/diagrams1" />
+                android:background="@drawable/diagrams1"
+                android:scaleType="fitXY"/>
         </LinearLayout>
     </ScrollView>
 
