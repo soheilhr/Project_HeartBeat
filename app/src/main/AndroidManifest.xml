@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.admin.heartbeat" >
-
+    <uses-permission android:name="android.permission.VIBRATE"/>
     <application
         android:name=".MyApplication"
         android:allowBackup="true"
@@ -10,6 +10,7 @@
         android:theme="@style/HeartBeatTheme" >
         <activity
             android:name=".Mainpage"
+            android:screenOrientation="portrait"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,9 +21,11 @@
         <activity
             android:name=".SettingsActivity"
             android:label="@string/title_activity_settings" >
+
         </activity>
         <activity
             android:name=".LearnHomeActivity"
+
             android:label="@string/title_activity_learn_home" >
         </activity>
         <activity
@@ -85,6 +88,7 @@
         </activity>
         <activity
             android:name=".Listeningtips"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_listeningtips" >
         </activity>
         <activity
