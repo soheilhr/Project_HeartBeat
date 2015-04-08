@@ -27,7 +27,7 @@ import java.util.logging.LogRecord;
 public class Game1 extends ActionBarActivity implements View.OnClickListener {
     private TextView scoreBlue,scoreRed,condition,remTime,redtext;
     private ProgressBar bluebar,redbar;
-    private int score1,score2,correctbutton,level,cnt,cnt1,cnt2;
+    private int score1,score2,correctbutton,level,cnt,cnt1,cnt2,cnt3;
     private MediaPlayer mediaPlayer1,mediaPlayer2;
     private double[] measures,tmpmeasures;
     private int[] currentcondition=new int[]{-1,-2,-3};
@@ -72,10 +72,12 @@ public class Game1 extends ActionBarActivity implements View.OnClickListener {
         score2=0;
         cnt1=0;
         cnt2=0;
+        cnt3=1;
         level=1;
         flag1=true;
-        scoreRed.setVisibility(View.INVISIBLE);
-        redtext.setVisibility(View.INVISIBLE);
+        redtext.setText("AI score");
+        //scoreRed.setVisibility(View.INVISIBLE);
+        //redtext.setVisibility(View.INVISIBLE);
 
         ti1= new CountDownTimer(100000, 1000) {
 
@@ -94,17 +96,37 @@ public class Game1 extends ActionBarActivity implements View.OnClickListener {
                             mediaPlayer2.stop();
                         }
 
-                        if (cnt2 == 0) mediaPlayer1.start();
-                        else mediaPlayer2.start();
+                        if (cnt2 == 0)
+                        {
+                            cnt3=(cnt3 + 1) % 3;
+                            if(cnt3==0)
+                            {
+                                Random r = new Random();
+                                int i1 = (r.nextInt(10-0)+0);
+                                if((i1>3))score2=score2+100;
+                                else score1=score1+100;
+                                scoreRed.setText(String.format("%03d",score2));
+                                scoreBlue.setText(String.format("%03d",score1));
+                                getcondition(1);
+                            }
+                            mediaPlayer1.start();
+
+                        }
+                        else
+                        {
+                            mediaPlayer2.start();
+                        }
                         cnt2 = (cnt2 + 1) % 2;
                     }
                 }
                 else
                 {
-                    mediaPlayer1.pause();
-                    mediaPlayer2.pause();
-                    mediaPlayer1.reset();
-                    mediaPlayer2.reset();
+                    if (mediaPlayer1.isPlaying()) {
+                        mediaPlayer1.stop();
+                    }
+                    if (mediaPlayer2.isPlaying()) {
+                        mediaPlayer2.stop();
+                    }
                 }
             }
 
@@ -129,18 +151,14 @@ public class Game1 extends ActionBarActivity implements View.OnClickListener {
      * */
 
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        flag1=true;
 
-
-    }
 
     @Override
     protected void onPause() {
-        super.onPause();
+        flag1=false;
         getcondition(1);
+        super.onPause();
+
     }
 
     /**
@@ -220,11 +238,13 @@ public class Game1 extends ActionBarActivity implements View.OnClickListener {
         ///condition.setText(""+currentcondition[choice]+"s"+choice+"d"+correctbutton);
         tmpmeasures[tmpids.getInt(currentcondition[choice],-1)]=(tmpmeasures[tmpids.getInt(currentcondition[choice],-1)]-1);
         tmpmeasures[5]=tmpmeasures[5]+1;
-        Intent intent = new Intent(this, Listeningtips.class);
-        intent.putExtra("Id",currentcondition[choice]);
-        startActivity(intent);
-        flag1=false;
-        ///getcondition(level);
+        ///Intent intent = new Intent(this, Listeningtips.class);
+        ///intent.putExtra("Id",currentcondition[choice]);
+        score2=score2+100;
+        scoreRed.setText(String.format("%03d",score2));
+        ///startActivity(intent);
+
+        getcondition(level);
     }
     void calculatemeasures()
     {

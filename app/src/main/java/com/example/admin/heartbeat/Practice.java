@@ -7,6 +7,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.res.TypedArray;
 import android.media.MediaPlayer;
+import android.media.MediaPlayer.*;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -20,6 +21,7 @@ import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import java.io.IOException;
 import java.util.Random;
 
 
@@ -29,15 +31,18 @@ import java.util.Random;
  *
  * @see SystemUiHider
  */
-public class Practice extends ActionBarActivity implements View.OnClickListener {
-private TextView scoreBlue,scoreRed,condition,remTime,redtext,timetext;
+public class Practice extends ActionBarActivity implements View.OnClickListener  {
+private TextView scoreBlue,scoreRed,condition,remTime,redtext,timetext,scoretext;
 private ProgressBar bluebar,redbar;
 private int score1,score2,correctbutton,level,cnt,cnt1,cnt2;
 private MediaPlayer mediaPlayer1,mediaPlayer2;
 private double[] measures,tmpmeasures;
 private int[] currentcondition=new int[]{-1,-2,-3};
 private CountDownTimer ti1,ti2;
-private Boolean flag1;
+private Boolean flag1=false,mp1ready=false,mp2ready=false;
+
+
+
 private Thread t1 = new Thread(new Runnable() {
 public void run() {
         /////
@@ -54,8 +59,7 @@ public void run() {
 @Override
 protected void onStop() {
         super.onStop();
-        mediaPlayer1.pause();
-        mediaPlayer2.pause();
+
         }
 
 @Override
@@ -64,6 +68,7 @@ protected void onCreate(Bundle savedInstanceState) {
         setContentView(R.layout.activity_practice);
 
         scoreBlue = (TextView) findViewById(R.id.blueScore);
+        scoretext = (TextView) findViewById(R.id.textView8);
         scoreRed = (TextView) findViewById(R.id.redScore);
         redtext=(TextView) findViewById(R.id.textView9);
         remTime = (TextView) findViewById(R.id.textTime);
@@ -71,16 +76,25 @@ protected void onCreate(Bundle savedInstanceState) {
         condition = (TextView) findViewById(R.id.textCondition);
         bluebar = (ProgressBar) findViewById(R.id.progressBarBlue);
         redbar = (ProgressBar) findViewById(R.id.progressBarRed);
-        ((ImageButton) findViewById(R.id.redButton)).setOnClickListener(this);
+
+    scoretext.setText("Win Strike");
+
+
+
+
+    ((ImageButton) findViewById(R.id.redButton)).setOnClickListener(this);
         ((ImageButton) findViewById(R.id.blueButton)).setOnClickListener(this);
         tmpmeasures=new double[]{0,0,0,0,0,0};
         getcondition(1);
+
+
+
         score1=0;
         score2=0;
         cnt1=0;
         cnt2=0;
         level=1;
-        flag1=true;
+
         scoreRed.setVisibility(View.INVISIBLE);
         redtext.setVisibility(View.INVISIBLE);
         remTime.setVisibility(View.INVISIBLE);
@@ -104,39 +118,59 @@ public void onTick(long millisUntilFinished) {
         mediaPlayer2.stop();
         }
 
-        if (cnt2 == 0) mediaPlayer1.start();
-        else mediaPlayer2.start();
+        if (cnt2 == 0)
+        {
+            if(mp1ready) {
+                mediaPlayer1.start();
+
+            }
+        }
+        else
+        {
+            if(mp2ready)mediaPlayer2.start();
+
+
+        }
         cnt2 = (cnt2 + 1) % 2;
         }
         }
         else
         {
-        mediaPlayer1.pause();
-        mediaPlayer2.pause();
-        mediaPlayer1.reset();
-        mediaPlayer2.reset();
+            if (mediaPlayer1.isPlaying()) {
+                mediaPlayer1.stop();
+            }
+            if (mediaPlayer2.isPlaying()) {
+                mediaPlayer2.stop();
+            }
         }
         }
 
+
+
 public void onFinish() {
         // set
-        measures = ((MyApplication) getApplication()).getMetrics();
-        calculatemeasures();
-        ((MyApplication) getApplication()).setMetrics(measures);
+        ///measures = ((MyApplication) getApplication()).getMetrics();
+        ///calculatemeasures();
+        ///((MyApplication) getApplication()).setMetrics(measures);
        /// finish();
         ti1.start();
         }
         };
 
         ti1.start();
-
+        flag1=true;
         t1.start();
         t2.start();
 
         }
 
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        if(!flag1)flag1=true;
+    }
 
-/**
+    /**
  * Update timer on seekbar
  * */
 
@@ -144,7 +178,14 @@ public void onFinish() {
 @Override
 protected void onResume() {
         super.onResume();
+    if(!flag1)
+    {
+        getcondition(1);
         flag1=true;
+
+    }
+
+
 
 
         }
@@ -152,7 +193,8 @@ protected void onResume() {
 @Override
 protected void onPause() {
         super.onPause();
-        getcondition(1);
+
+        flag1=false;
         }
 
 /**
@@ -185,7 +227,7 @@ public boolean onOptionsItemSelected(MenuItem item) {
         return super.onOptionsItemSelected(item);
         }
 
-private void getcondition(int level){
+private void getcondition(int level) {
         Random r = new Random();
         int i1 = (r.nextInt(8-0)+0);
         int i2=(r.nextInt(8-0)+0);
@@ -197,10 +239,32 @@ private void getcondition(int level){
         id2=ids.getResourceId(i2,-1);
         currentcondition[1]=i1;
         currentcondition[2]=i2;
+        mp1ready=false;
         mediaPlayer1=MediaPlayer.create(this, id1);
-        mediaPlayer2=MediaPlayer.create(this, id2);
+        mediaPlayer1.setOnPreparedListener(new OnPreparedListener() {
+        @Override
+        public void onPrepared(MediaPlayer mp) {
+            mp1ready=true;
 
-        TypedArray ids2 = getResources().obtainTypedArray(R.array.bwave);
+        }
+    });
+
+
+
+    mp2ready=false;
+    mediaPlayer2=MediaPlayer.create(this, id2);
+    mediaPlayer2.setOnPreparedListener(new OnPreparedListener() {
+        @Override
+        public void onPrepared(MediaPlayer mp) {
+            mp2ready=true;
+
+        }
+    });
+
+
+
+
+    TypedArray ids2 = getResources().obtainTypedArray(R.array.bwave);
         TypedArray ids3 = getResources().obtainTypedArray(R.array.rwave);
         bluebar.setBackgroundResource(ids2.getResourceId(i1,-1));
         redbar.setBackgroundResource(ids3.getResourceId(i2,-1));
@@ -211,23 +275,24 @@ private void getcondition(int level){
         if(correctbutton==1)condition.setText(ids4.getString(i1));
         else condition.setText(ids4.getString(i2));
 
-
-
         //condition =
         //redbar =
         //bluebar =
         //correctbutton =
+
         }
+
         void gotcorrect(int choice){
-        score1 = score1+level*100;
-        scoreBlue.setText(String.format("%3f",score1/tmpmeasures[5]/100));
+        score1 = score1+1;
         TypedArray tmpids = getResources().obtainTypedArray(R.array.meas);
         tmpmeasures[tmpids.getInt(currentcondition[choice],-1)]=(tmpmeasures[tmpids.getInt(currentcondition[choice],-1)]+1);
         tmpmeasures[5]=tmpmeasures[5]+1;
-        getcondition(level);
+            scoreBlue.setText(String.format("%d",score1));
+            getcondition(level);
         }
 
         void gotfalse(int choice){
+        score1=0;
         TypedArray tmpids = getResources().obtainTypedArray(R.array.meas);
         ///condition.setText(""+currentcondition[choice]+"s"+choice+"d"+correctbutton);
         tmpmeasures[tmpids.getInt(currentcondition[choice],-1)]=(tmpmeasures[tmpids.getInt(currentcondition[choice],-1)]-1);
@@ -235,8 +300,9 @@ private void getcondition(int level){
         Intent intent = new Intent(this, Listeningtips.class);
         intent.putExtra("Id",currentcondition[choice]);
         startActivity(intent);
+        scoreBlue.setText(String.format("%d",score1));
         flag1=false;
-        ///getcondition(level);
+        getcondition(level);
         }
         void calculatemeasures()
         {
