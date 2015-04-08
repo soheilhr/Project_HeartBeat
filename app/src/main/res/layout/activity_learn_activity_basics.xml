@@ -9,15 +9,15 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:fillViewport="true"
         android:id="@+id/scrollView" >
 
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:id="@+id/linearlayout_basics">
+            android:layout_height="wrap_content"
+            android:id="@+id/linearlayout_basics"
+            android:gravity="center_vertical|center_horizontal">
 
         </LinearLayout>
     </ScrollView>

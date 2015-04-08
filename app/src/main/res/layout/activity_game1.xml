@@ -123,16 +123,30 @@
             android:layout_height="wrap_content"
             android:layout_weight="0.9">
 
-            <ProgressBar
-                style="?android:attr/progressBarStyleHorizontal"
+            <LinearLayout
+                android:orientation="horizontal"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/progressBarBlue"
-                android:layout_weight="0.45"
-                android:background="@drawable/apex"
-                android:progress="75"
-                android:progressTint="@color/blue"
-                android:max="100" />
+                android:layout_weight="0.45">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="A"
+                    android:id="@+id/textView16"
+                    android:layout_gravity="center_vertical"/>
+
+                <ProgressBar
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:id="@+id/progressBarRed"
+                    android:layout_weight="0.45"
+                    android:background="@drawable/hsred1"
+                    android:max="100"
+                    android:progress="50"
+                    android:progressTint="@color/red" />
+            </LinearLayout>
 
             <Space
                 android:layout_width="match_parent"
@@ -140,16 +154,30 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_weight="0.1" />
 
-            <ProgressBar
-                style="?android:attr/progressBarStyleHorizontal"
+            <LinearLayout
+                android:orientation="horizontal"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/progressBarRed"
-                android:layout_weight="0.45"
-                android:background="@drawable/hsred1"
-                android:max="100"
-                android:progress="50"
-                android:progressTint="@color/red" />
+                android:layout_weight="0.45">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="B"
+                    android:id="@+id/textView17"
+                    android:layout_gravity="center_vertical"/>
+
+                <ProgressBar
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:id="@+id/progressBarBlue"
+                    android:layout_weight="0.45"
+                    android:background="@drawable/apex"
+                    android:progress="75"
+                    android:progressTint="@color/blue"
+                    android:max="100" />
+            </LinearLayout>
 
         </LinearLayout>
 

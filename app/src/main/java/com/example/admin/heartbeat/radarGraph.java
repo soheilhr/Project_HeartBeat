@@ -12,6 +12,7 @@ import android.view.SurfaceView;
 import android.graphics.Paint;
 import android.graphics.Paint.Style;
 import java.lang.Math;
+import android.util.Log;
 
 public class radarGraph extends SurfaceView {
 
@@ -39,7 +40,9 @@ public class radarGraph extends SurfaceView {
     private void init(){
         surfaceHolder = getHolder();
         bmpAxes = BitmapFactory.decodeResource(getResources(),R.drawable.diagram);
-        Bitmap scaledBitmap = Bitmap.createScaledBitmap(bmpAxes,1200,1200,true);
+
+        Bitmap scaledBitmap = Bitmap.createScaledBitmap(bmpAxes,1200,1200,true); //Old hardcoded size = (1200,1200)
+
         bmpAxes.recycle();
         bmpAxes = scaledBitmap;
         surfaceHolder.addCallback(new SurfaceHolder.Callback() {
@@ -47,9 +50,13 @@ public class radarGraph extends SurfaceView {
             @Override
             public void surfaceCreated(SurfaceHolder holder) {
                 Canvas canvas = holder.lockCanvas(null);
-
+                float scaleFactor_w = Math.min(1.f,canvas.getWidth()/1200.f);
+                float scaleFactor_h = Math.min(1.f,canvas.getWidth()/1200.f);
+                Log.d("radarLog","ScaleFactor" + Float.toString(scaleFactor_w)+" "+ Float.toString(scaleFactor_h));
+                canvas.scale(scaleFactor_w,scaleFactor_w);
                 drawBackground(canvas);
                 drawPlot(canvas);
+
                 holder.unlockCanvasAndPost(canvas);
             }
 
