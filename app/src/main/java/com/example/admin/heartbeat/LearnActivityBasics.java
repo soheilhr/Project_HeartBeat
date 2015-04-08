@@ -114,7 +114,7 @@ public class LearnActivityBasics extends ActionBarActivity {
             startActivity(intent);
         }
         else if (id ==9) {
-            Intent intent = new Intent(this, TestActivity.class);
+            Intent intent = new Intent(this, LearnActivityAllSounds.class);
             startActivity(intent);
         }
         view.startAnimation(buttonAnimation());

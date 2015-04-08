@@ -29,6 +29,7 @@
     <string name="title_activity_learn_activity_mitral_regurgitation">
         LearnActivityMitralRegurgitation
     </string>
+    <string name="title_activity_listeningtips">Tips</string>
     <string name="score_name_1">Speed</string>
     <string name="score_name_2">Accuracy</string>
     <string name="score_name_3">Mitral Valve</string>
@@ -42,4 +43,5 @@
     <string name="title_activity_test">TestActivity</string>
     <string name="title_activity_beat">BeatActivity</string>
     <string name="title_activity_game1">Game1</string>
+    <string name="title_activity_learn_activity_all_sounds">LearnActivityAllSounds</string>
 </resources>

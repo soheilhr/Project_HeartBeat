@@ -123,16 +123,30 @@
             android:layout_height="wrap_content"
             android:layout_weight="0.9">
 
-            <ProgressBar
-                style="?android:attr/progressBarStyleHorizontal"
+            <LinearLayout
+                android:orientation="horizontal"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/progressBarBlue"
-                android:layout_weight="0.45"
-                android:background="@drawable/apex"
-                android:progress="75"
-                android:progressTint="@color/blue"
-                android:max="100" />
+                android:layout_weight="0.45">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="B"
+                    android:id="@+id/textView14"
+                    android:layout_gravity="center_vertical" />
+
+                <ProgressBar
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:id="@+id/progressBarBlue"
+                    android:layout_weight="0.45"
+                    android:background="@drawable/apex"
+                    android:progress="75"
+                    android:progressTint="@color/blue"
+                    android:max="100" />
+            </LinearLayout>
 
             <Space
                 android:layout_width="match_parent"
@@ -196,7 +210,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/redButton"
                 android:layout_weight="0.5"
-                android:src="@drawable/practiceicon"
+                android:src="@drawable/gameselecta"
                 android:scaleType="centerCrop"
                 android:adjustViewBounds="true"
                 android:background="@color/white" />
@@ -206,7 +220,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/blueButton"
                 android:layout_weight="0.5"
-                android:src="@drawable/practiceicon3"
+                android:src="@drawable/gameselectb"
                 android:scaleType="centerCrop"
                 android:background="@color/white"
                 android:adjustViewBounds="true" />

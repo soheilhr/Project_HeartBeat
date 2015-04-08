@@ -32,7 +32,8 @@
                 android:longClickable="false"
                 android:visibility="visible"
                 android:layout_marginTop="30dp"
-                android:layout_marginBottom="30dp" />
+                android:layout_marginBottom="30dp"
+                android:id="@+id/radar_graph"/>
 
             <LinearLayout android:id="@+id/fullscreen_content_controls" style="?metaButtonBarStyle"
                 android:layout_width="wrap_content" android:layout_height="wrap_content"

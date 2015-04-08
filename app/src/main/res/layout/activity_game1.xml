@@ -196,7 +196,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/redButton"
                 android:layout_weight="0.5"
-                android:src="@drawable/practiceicon"
+                android:src="@drawable/gameselecta"
                 android:scaleType="centerCrop"
                 android:adjustViewBounds="true"
                 android:background="@color/white" />
@@ -206,7 +206,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/blueButton"
                 android:layout_weight="0.5"
-                android:src="@drawable/practiceicon3"
+                android:src="@drawable/gameselectb"
                 android:scaleType="centerCrop"
                 android:background="@color/white"
                 android:adjustViewBounds="true" />

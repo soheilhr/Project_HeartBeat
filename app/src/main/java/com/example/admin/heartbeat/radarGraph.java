@@ -17,7 +17,8 @@ public class radarGraph extends SurfaceView {
 
     private SurfaceHolder surfaceHolder;
     private Bitmap bmpAxes;
-
+    private int maxScorePix = 480;
+    private double[] score =  new double[]{0.5*maxScorePix, 0.5*maxScorePix, 0.5*maxScorePix, 0.5*maxScorePix, 0.5*maxScorePix, 0.5*maxScorePix, 0.5*maxScorePix};
     public radarGraph(Context context) {
         super(context);
         init();
@@ -46,6 +47,7 @@ public class radarGraph extends SurfaceView {
             @Override
             public void surfaceCreated(SurfaceHolder holder) {
                 Canvas canvas = holder.lockCanvas(null);
+
                 drawBackground(canvas);
                 drawPlot(canvas);
                 holder.unlockCanvasAndPost(canvas);
@@ -55,15 +57,20 @@ public class radarGraph extends SurfaceView {
             public void surfaceChanged(SurfaceHolder holder,
                                        int format, int width, int height) {
                 // TODO Auto-generated method stub
-
             }
 
             @Override
             public void surfaceDestroyed(SurfaceHolder holder) {
                 // TODO Auto-generated method stub
-
             }
         });
+    }
+
+    public void setScore(double[] measure){
+        //Assume measure is an array of length 6 TODO: Handle errors
+        for (int i=0;i<6;i++) {
+            score[i]=maxScorePix*measure[i];
+        }
     }
 
     protected void drawBackground(Canvas canvas) {
@@ -87,11 +94,11 @@ public class radarGraph extends SurfaceView {
         paintTextBorder.setStyle(Paint.Style.STROKE);
         paintTextBorder.setStrokeWidth(10);
 
-        double[] score;
-        score = new double[6];
-        score[0]=560;score[1]=560;score[2]=520;score[3]=560;score[4]=470;score[5]=490;
+        double[] textPos;
+        textPos = new double[6];
+        textPos[0]=1.16*maxScorePix;textPos[1]=1.16*maxScorePix;textPos[2]=1.08*maxScorePix;textPos[3]=1.16*maxScorePix;textPos[4]=0.98*maxScorePix;textPos[5]=1.02*maxScorePix;
         int vertices[][];
-        vertices = getScorePosition(score);
+        vertices = getScorePosition(textPos);
 
         // Draw text on diagram
         canvas.drawText(getResources().getString(R.string.score_name_1), vertices[0][0], vertices[0][1], paintTextBorder);
@@ -112,9 +119,9 @@ public class radarGraph extends SurfaceView {
 
     protected void drawPlot(Canvas canvas) {
         // Get score TODO: Setup scoring framework
-        double[] score;
-        score = new double[6];
-        score[0]=475;score[1]=280;score[2]=250;score[3]=220;score[4]=270;score[5]=250;
+        //double[] score;
+        //score = new double[6];
+        //score[0]=480;score[1]=480;score[2]=480;score[3]=480;score[4]=480;score[5]=480;
         int vertices[][];
         vertices = getScorePosition(score);
         // Draw score shape

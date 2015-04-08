@@ -12,7 +12,7 @@
         <item>Mitral Stenosis</item>
         <item>Aortic Regurgitation</item>
         <item>Mitral Regurgitation</item>
-        <item>Test Fragment</item>
+        <item>All Heart Sounds</item>
     </string-array>
 
     <string-array name="string_array_learn_murmurs">

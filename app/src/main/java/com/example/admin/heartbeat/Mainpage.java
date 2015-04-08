@@ -18,7 +18,7 @@ import android.view.View;
 import android.view.Menu;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
-
+import android.util.Log;
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
  * status bar and navigation/system bar) with user interaction.
@@ -26,12 +26,34 @@ import android.view.animation.Animation;
  * @see SystemUiHider
  */
 public class Mainpage extends ActionBarActivity {
-    double[] measures= new double[]{1, 0.5, 0.2, 0.3, 0.4, 0.5, 0.6};
+    double[] measures= new double[]{0.5, 0.5, 0.5, 0.5, 0.5, 0.5};
+    radarGraph radar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_mainpage);
+        ((MyApplication) this.getApplication()).setMetrics(measures);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        double [] measures = ((MyApplication) getApplication()).getMetrics();
+        for (int i=0; i<measures.length; i++)
+            Log.i("TestMeasureOnStart",Integer.toString(i) + ":" + measures[i]);
+        radar = (radarGraph) findViewById(R.id.radar_graph);
+        radar.setScore(measures);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        double [] measures = ((MyApplication) getApplication()).getMetrics();
+        for (int i=0; i<measures.length; i++)
+            Log.i("TestMeasureOnResume",Integer.toString(i) + ":" + measures[i]);
+        radar = (radarGraph) findViewById(R.id.radar_graph);
+        radar.setScore(measures);
     }
 
     @Override
@@ -69,7 +91,7 @@ public class Mainpage extends ActionBarActivity {
 
         // Do something in response to button
         Intent intent = new Intent(this, Practice.class);
-        ((scoreMetric) this.getApplication()).setMetrics(measures);
+        //((MyApplication) this.getApplication()).setMetrics(measures);
         startActivity(intent);
         view.startAnimation(buttonAnimation());
 
@@ -78,7 +100,7 @@ public class Mainpage extends ActionBarActivity {
     public void onBeatButtonClick(View view){
         // Do something in response to button
         Intent intent = new Intent(this, Game1.class);
-        ((scoreMetric) this.getApplication()).setMetrics(measures);
+        //((MyApplication) this.getApplication()).setMetrics(measures);
         startActivity(intent);
         view.startAnimation(buttonAnimation());
     }
