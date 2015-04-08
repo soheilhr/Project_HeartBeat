@@ -69,19 +69,15 @@
             android:label="@string/title_activity_learn_activity_mitral_regurgitation" >
         </activity>
         <activity
-            android:name=".util.TestFragmentActivity"
-            android:label="@string/title_activity_test_fragment" >
-        </activity>
-        <activity
             android:name=".util.TestActivity"
             android:label="@string/title_activity_test" >
         </activity>
         <activity
-            android:name=".BeatActivity"
-            android:label="@string/title_activity_beat" >
+            android:name=".Game1"
+            android:label="@string/title_activity_game1" >
         </activity>
         <activity
-            android:name=".PracticeActivity"
+            android:name=".Practice"
             android:label="@string/title_activity_practice" >
         </activity>
     </application>

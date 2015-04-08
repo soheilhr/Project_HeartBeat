@@ -3,6 +3,7 @@ package com.example.admin.heartbeat;
 import com.example.admin.heartbeat.SettingsActivity;
 import com.example.admin.heartbeat.util.SystemUiHider;
 
+
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.support.v7.app.ActionBarActivity;
@@ -25,7 +26,7 @@ import android.view.animation.Animation;
  * @see SystemUiHider
  */
 public class Mainpage extends ActionBarActivity {
-
+    double[] measures= new double[]{1, 0.5, 0.2, 0.3, 0.4, 0.5, 0.6};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,19 +64,22 @@ public class Mainpage extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
+
     public void onPracticeButtonClick(View view){
-        view.startAnimation(buttonAnimation());
+
         // Do something in response to button
-        //Intent intent = new Intent(Mainpage.this, LearnActivity.class);
-        //startActivity(intent);
+        Intent intent = new Intent(this, Practice.class);
+        ((scoreMetric) this.getApplication()).setMetrics(measures);
+        startActivity(intent);
+        view.startAnimation(buttonAnimation());
 
     }
 
     public void onBeatButtonClick(View view){
         // Do something in response to button
-        //Intent intent = new Intent(this, MainActivity2Activity_learn.class);
-        // intent.putExtra(EXTRA_MESSAGE, message);
-        //startActivity(intent);
+        Intent intent = new Intent(this, Game1.class);
+        ((scoreMetric) this.getApplication()).setMetrics(measures);
+        startActivity(intent);
         view.startAnimation(buttonAnimation());
     }
 

@@ -41,4 +41,5 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_test">TestActivity</string>
     <string name="title_activity_beat">BeatActivity</string>
+    <string name="title_activity_game1">Game1</string>
 </resources>
