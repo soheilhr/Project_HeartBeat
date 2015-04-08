@@ -76,6 +76,14 @@
             android:name=".util.TestActivity"
             android:label="@string/title_activity_test" >
         </activity>
+        <activity
+            android:name=".BeatActivity"
+            android:label="@string/title_activity_beat" >
+        </activity>
+        <activity
+            android:name=".PracticeActivity"
+            android:label="@string/title_activity_practice" >
+        </activity>
     </application>
 
 </manifest>
