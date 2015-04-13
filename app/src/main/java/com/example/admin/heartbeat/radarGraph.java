@@ -18,8 +18,8 @@ public class radarGraph extends SurfaceView {
 
     private SurfaceHolder surfaceHolder;
     private Bitmap bmpAxes;
-    private int maxScorePix = 480;
-    private double[] score =  new double[]{0.5*maxScorePix, 0.5*maxScorePix, 0.5*maxScorePix, 0.5*maxScorePix, 0.5*maxScorePix, 0.5*maxScorePix, 0.5*maxScorePix};
+    private int maxScorePix = 450;//480;
+    private double[] score =  new double[]{0.75*maxScorePix, 0.75*maxScorePix, 0.75*maxScorePix, 0.75*maxScorePix, 0.75*maxScorePix, 0.75*maxScorePix, 0.75*maxScorePix};
     public radarGraph(Context context) {
         super(context);
         init();
@@ -41,7 +41,7 @@ public class radarGraph extends SurfaceView {
         surfaceHolder = getHolder();
         bmpAxes = BitmapFactory.decodeResource(getResources(),R.drawable.diagram);
 
-        Bitmap scaledBitmap = Bitmap.createScaledBitmap(bmpAxes,1200,1200,true); //Old hardcoded size = (1200,1200)
+        Bitmap scaledBitmap = Bitmap.createScaledBitmap(bmpAxes,1000,1000,true); //Old hardcoded size = (1200,1200)
 
         bmpAxes.recycle();
         bmpAxes = scaledBitmap;
@@ -50,8 +50,8 @@ public class radarGraph extends SurfaceView {
             @Override
             public void surfaceCreated(SurfaceHolder holder) {
                 Canvas canvas = holder.lockCanvas(null);
-                float scaleFactor_w = Math.min(1.f,canvas.getWidth()/1200.f);
-                float scaleFactor_h = Math.min(1.f,canvas.getWidth()/1200.f);
+                float scaleFactor_w = Math.min(1.f,canvas.getWidth()/1000.f);
+                float scaleFactor_h = Math.min(1.f,canvas.getWidth()/1000.f);
                 Log.d("radarLog","ScaleFactor" + Float.toString(scaleFactor_w)+" "+ Float.toString(scaleFactor_h));
                 canvas.scale(scaleFactor_w,scaleFactor_w);
                 drawBackground(canvas);
@@ -85,10 +85,12 @@ public class radarGraph extends SurfaceView {
         canvas.drawColor(Color.WHITE);
         // Set background graphic
         // Get start position for background image
+
         int x_origin = getWidth()/2 - bmpAxes.getWidth()/2;
         int y_origin = getHeight()/2 - bmpAxes.getHeight()/2;
         canvas.drawBitmap(bmpAxes,x_origin, y_origin, null);
-
+        Log.d("radarLog","getWidth: "+getWidth()/2+" "+"getHeight: "+getHeight()/2);
+        Log.d("radarLog","Bitmap getWidth: "+bmpAxes.getWidth()/2+" "+"getHeight: "+bmpAxes.getHeight()/2);
         // Write text
         Paint paintText = new Paint();
         paintText.setColor(Color.WHITE);
@@ -128,7 +130,7 @@ public class radarGraph extends SurfaceView {
         // Get score TODO: Setup scoring framework
         //double[] score;
         //score = new double[6];
-        //score[0]=480;score[1]=480;score[2]=480;score[3]=480;score[4]=480;score[5]=480;
+        //score[0]=340;score[1]=230;score[2]=260;score[3]=240;score[4]=250;score[5]=230;
         int vertices[][];
         vertices = getScorePosition(score);
         // Draw score shape

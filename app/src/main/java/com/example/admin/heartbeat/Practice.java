@@ -81,7 +81,7 @@ public class Practice extends ActionBarActivity implements View.OnClickListener 
         bluebar = (ProgressBar) findViewById(R.id.progressBarBlue);
         redbar = (ProgressBar) findViewById(R.id.progressBarRed);
 
-        scoretext.setText("Win Strike");
+        scoretext.setText("Winning Streak");
 
 
 

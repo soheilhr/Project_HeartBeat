@@ -111,7 +111,7 @@ public class LearnActivityAllSounds extends ActionBarActivity {
             mplayer.prepareAsync();
         }
         if (id == 0) {
-            mplayer = MediaPlayer.create(getApplicationContext(),R.raw.hs2);
+            mplayer = MediaPlayer.create(getApplicationContext(),R.raw.hs0);
 
         }
         else if (id == 1) {
