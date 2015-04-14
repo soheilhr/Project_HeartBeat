@@ -39,21 +39,19 @@ public class radarGraph extends SurfaceView {
 
     private void init(){
         surfaceHolder = getHolder();
-        bmpAxes = BitmapFactory.decodeResource(getResources(),R.drawable.diagram);
-
-        Bitmap scaledBitmap = Bitmap.createScaledBitmap(bmpAxes,1000,1000,true); //Old hardcoded size = (1200,1200)
-
-        bmpAxes.recycle();
-        bmpAxes = scaledBitmap;
         surfaceHolder.addCallback(new SurfaceHolder.Callback() {
 
             @Override
             public void surfaceCreated(SurfaceHolder holder) {
                 Canvas canvas = holder.lockCanvas(null);
-                float scaleFactor_w = Math.min(1.f,canvas.getWidth()/1000.f);
-                float scaleFactor_h = Math.min(1.f,canvas.getWidth()/1000.f);
-                Log.d("radarLog","ScaleFactor" + Float.toString(scaleFactor_w)+" "+ Float.toString(scaleFactor_h));
-                canvas.scale(scaleFactor_w,scaleFactor_w);
+
+                bmpAxes = BitmapFactory.decodeResource(getResources(),R.drawable.diagram);
+                //float bitmapSize = Math.min(canvas.getWidth(),canvas.getHeight());
+                float bitmapSize = Math.min(canvas.getWidth(),bmpAxes.getWidth());
+                Bitmap scaledBitmap = Bitmap.createScaledBitmap(bmpAxes,(int) bitmapSize,(int) bitmapSize,true); //Old hardcoded size = (1200,1200)
+                bmpAxes.recycle();
+                bmpAxes = scaledBitmap;
+
                 drawBackground(canvas);
                 drawPlot(canvas);
 
