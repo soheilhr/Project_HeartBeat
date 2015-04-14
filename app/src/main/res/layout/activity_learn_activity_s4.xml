@@ -28,8 +28,8 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/imageView2"
                 android:layout_gravity="center_horizontal"
-                android:background="@drawable/diagrams4"
-                android:scaleType="centerInside"/>
+                android:scaleType="centerInside"
+                android:src="@drawable/diagrams4" />
         </LinearLayout>
     </ScrollView>
 

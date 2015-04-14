@@ -114,12 +114,12 @@ public class radarGraph extends SurfaceView {
         vertices = getScorePosition(textPos);
 
         // Draw text on diagram
-        canvas.drawText(getResources().getString(R.string.score_name_1), vertices[0][0], vertices[0][1], paintTextBorder);
-        canvas.drawText(getResources().getString(R.string.score_name_2), vertices[1][0], vertices[1][1], paintTextBorder);
-        canvas.drawText(getResources().getString(R.string.score_name_3), vertices[2][0], vertices[2][1], paintTextBorder);
-        canvas.drawText(getResources().getString(R.string.score_name_4), vertices[3][0], vertices[3][1], paintTextBorder);
-        canvas.drawText(getResources().getString(R.string.score_name_5), vertices[4][0], vertices[4][1], paintTextBorder);
-        canvas.drawText(getResources().getString(R.string.score_name_6), vertices[5][0], vertices[5][1], paintTextBorder);
+        //canvas.drawText(getResources().getString(R.string.score_name_1), vertices[0][0], vertices[0][1], paintTextBorder);
+        //canvas.drawText(getResources().getString(R.string.score_name_2), vertices[1][0], vertices[1][1], paintTextBorder);
+        //canvas.drawText(getResources().getString(R.string.score_name_3), vertices[2][0], vertices[2][1], paintTextBorder);
+        //canvas.drawText(getResources().getString(R.string.score_name_4), vertices[3][0], vertices[3][1], paintTextBorder);
+        //canvas.drawText(getResources().getString(R.string.score_name_5), vertices[4][0], vertices[4][1], paintTextBorder);
+        //canvas.drawText(getResources().getString(R.string.score_name_6), vertices[5][0], vertices[5][1], paintTextBorder);
 
         canvas.drawText(getResources().getString(R.string.score_name_1), vertices[0][0], vertices[0][1], paintText);
         canvas.drawText(getResources().getString(R.string.score_name_2), vertices[1][0], vertices[1][1], paintText);
