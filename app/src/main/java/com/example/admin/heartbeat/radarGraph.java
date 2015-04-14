@@ -18,6 +18,7 @@ public class radarGraph extends SurfaceView {
 
     private SurfaceHolder surfaceHolder;
     private Bitmap bmpAxes;
+    private float bitmapSize;
     private int maxScorePix = 450;//480;
     private double[] score =  new double[]{0.75*maxScorePix, 0.75*maxScorePix, 0.75*maxScorePix, 0.75*maxScorePix, 0.75*maxScorePix, 0.75*maxScorePix, 0.75*maxScorePix};
     public radarGraph(Context context) {
@@ -47,7 +48,8 @@ public class radarGraph extends SurfaceView {
 
                 bmpAxes = BitmapFactory.decodeResource(getResources(),R.drawable.diagram);
                 //float bitmapSize = Math.min(canvas.getWidth(),canvas.getHeight());
-                float bitmapSize = Math.min(canvas.getWidth(),bmpAxes.getWidth());
+                bitmapSize = Math.min(canvas.getWidth(),bmpAxes.getWidth());
+                Log.d("radarLog","BitmapSize: "+Float.toString(bitmapSize));
                 Bitmap scaledBitmap = Bitmap.createScaledBitmap(bmpAxes,(int) bitmapSize,(int) bitmapSize,true); //Old hardcoded size = (1200,1200)
                 bmpAxes.recycle();
                 bmpAxes = scaledBitmap;
@@ -74,8 +76,10 @@ public class radarGraph extends SurfaceView {
     public void setScore(double[] measure){
         //Assume measure is an array of length 6 TODO: Handle errors
         for (int i=0;i<6;i++) {
-            score[i]=maxScorePix*measure[i];
+            score[i]=measure[i];
         }
+        //Log.d("radarLog","bitmapSize"+Float.toString(bitmapSize));
+        //Log.d("radarLog","Score: "+Double.toString(score[0]));
     }
 
     protected void drawBackground(Canvas canvas) {
@@ -87,23 +91,25 @@ public class radarGraph extends SurfaceView {
         int x_origin = getWidth()/2 - bmpAxes.getWidth()/2;
         int y_origin = getHeight()/2 - bmpAxes.getHeight()/2;
         canvas.drawBitmap(bmpAxes,x_origin, y_origin, null);
-        Log.d("radarLog","getWidth: "+getWidth()/2+" "+"getHeight: "+getHeight()/2);
-        Log.d("radarLog","Bitmap getWidth: "+bmpAxes.getWidth()/2+" "+"getHeight: "+bmpAxes.getHeight()/2);
         // Write text
         Paint paintText = new Paint();
-        paintText.setColor(Color.WHITE);
+        paintText.setColor(Color.BLACK);
         paintText.setTextSize(50);
         paintText.setTextAlign(Paint.Align.CENTER);
         Paint paintTextBorder = new Paint();
-        paintTextBorder.setColor(Color.rgb(150,150,150));
+        paintTextBorder.setColor(Color.BLACK);
         paintTextBorder.setTextSize(50);
         paintTextBorder.setTextAlign(Paint.Align.CENTER);
         paintTextBorder.setStyle(Paint.Style.STROKE);
-        paintTextBorder.setStrokeWidth(10);
+        //paintTextBorder.setStrokeWidth(10);
 
         double[] textPos;
         textPos = new double[6];
-        textPos[0]=1.16*maxScorePix;textPos[1]=1.16*maxScorePix;textPos[2]=1.08*maxScorePix;textPos[3]=1.16*maxScorePix;textPos[4]=0.98*maxScorePix;textPos[5]=1.02*maxScorePix;
+        double halfBitmapSize = bitmapSize/2.0;
+        textPos[0]=0.9*halfBitmapSize;textPos[1]=0.9*halfBitmapSize;textPos[2]=0.9*halfBitmapSize;
+        textPos[3]=0.85*halfBitmapSize;textPos[4]=0.8*halfBitmapSize;textPos[5]=0.8*halfBitmapSize;
+
+        Log.d("radarLog","textPos"+textPos[0]);
         int vertices[][];
         vertices = getScorePosition(textPos);
 
@@ -126,11 +132,15 @@ public class radarGraph extends SurfaceView {
 
     protected void drawPlot(Canvas canvas) {
         // Get score TODO: Setup scoring framework
+        Log.d("radarLog","bitmapSize drawPlot: "+ Float.toString(bitmapSize));
+        double [] pixScore = new double [] {score[0]*bitmapSize/2,score[1]*bitmapSize/2,score[2]*bitmapSize/2,
+                                            score[3]*bitmapSize/2,score[4]*bitmapSize/2,score[5]*bitmapSize/2};
+
         //double[] score;
         //score = new double[6];
         //score[0]=340;score[1]=230;score[2]=260;score[3]=240;score[4]=250;score[5]=230;
         int vertices[][];
-        vertices = getScorePosition(score);
+        vertices = getScorePosition(pixScore);
         // Draw score shape
         Paint fill = new Paint();
         fill.setColor(getResources().getColor(R.color.navy_blue));
