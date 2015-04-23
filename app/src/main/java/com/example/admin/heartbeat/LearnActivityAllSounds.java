@@ -26,7 +26,7 @@ public class LearnActivityAllSounds extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_learn_activity_all_sounds);
-        currId = 0;
+        currId = -1;
         populateButtons();
         Log.d("LearnAllSounds","Populated buttons");
         mplayer = MediaPlayer.create(getApplicationContext(),R.raw.hs2);
@@ -154,19 +154,22 @@ public class LearnActivityAllSounds extends ActionBarActivity {
         view.startAnimation(buttonAnimation());
 
         // Set previously playing button to play icon
-        String button_id = /*"button"+*/Integer.toString(currId);
-        Button b = (Button)this.findViewById(getResources().getIdentifier(button_id, "id", getPackageName()));
-        Log.d("LearnAllSounds","Prev Button ID "+Integer.toString(b.getId()));
-        Log.d("LearnAllSounds","Prev Button ID actual id "+button_id);
-        b.setBackgroundResource(R.drawable.playicon);
-        if (id != currId) {
+        if (currId >= 0) { // Pause sound
+            String button_id = /*"button"+*/Integer.toString(currId);
+            Button b = (Button) this.findViewById(getResources().getIdentifier(button_id, "id", getPackageName()));
+            b.setBackgroundResource(R.drawable.playicon);
+            currId = -1;
+        }
+        else { // Play sound
             // mplayer not playing yet, so start playing sound
             mplayer.start();
+            Log.d("LearnAllSounds","Play sound");
             mplayer.setLooping(true);
             Button bPlay = (Button) view;
             bPlay.setBackgroundResource(R.drawable.pauseicon);
+            currId = id;
         }
-        currId = id;
+
     }
     private Animation buttonAnimation(){
         Animation buttonAnim = new AlphaAnimation(0.2f,0.2f);
